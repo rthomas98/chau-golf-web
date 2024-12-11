@@ -7,7 +7,14 @@ export default defineConfig({
         laravel({
             input: 'resources/js/app.jsx',
             refresh: true,
+            publicDirectory: 'public',
         }),
         react(),
     ],
+    resolve: {
+        alias: {
+            '@': '/resources/js',
+            '@images': '/resources/images'
+        },
+    },
 });

@@ -5,6 +5,7 @@ import { Menu } from "@headlessui/react";
 import { RxChevronDown, RxChevronRight } from "react-icons/rx";
 import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
+import { usePage } from '@inertiajs/react';
 
 /**
  * @typedef {Object} ImageShape
@@ -53,6 +54,7 @@ import PropTypes from 'prop-types';
  */
 
 export const Navbar5 = ({ logo, links, buttons, ...props }) => {
+  const { url } = usePage();
   const { logo: logoProp, links: linksProp, buttons: buttonsProp } = {
     logo: Navbar5Defaults.logo,
     links: Navbar5Defaults.links,
@@ -63,75 +65,93 @@ export const Navbar5 = ({ logo, links, buttons, ...props }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = false; // useMediaQuery("(max-width: 991px)");
 
+  const isActive = (path) => {
+    if (path === '/') {
+      return url === '/';
+    }
+    return url.startsWith(path);
+  };
+
   return (
-    <nav className="relative flex w-full items-center justify-between border-b border-border-primary bg-background-primary lg:min-h-18 lg:px-[5%]">
+    <nav className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-pearlbush bg-viridiangreen lg:min-h-18 lg:px-[5%]">
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="lg:flex">
           <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-            <a href={logoProp.url}>
-              <img src={logoProp.src} alt={logoProp.alt} />
+            <a href="/" className="text-2xl font-headers text-white hover:text-tahitigold transition-colors">
+              ChauChau Golf
             </a>
             <button
               className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
               <motion.span
-                className="my-[3px] h-0.5 w-6 bg-black"
+                className="my-[3px] h-0.5 w-6 bg-white"
                 animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
                 variants={topLineVariants}
               />
               <motion.span
-                className="my-[3px] h-0.5 w-6 bg-black"
+                className="my-[3px] h-0.5 w-6 bg-white"
                 animate={isMobileMenuOpen ? "open" : "closed"}
                 variants={middleLineVariants}
               />
               <motion.span
-                className="my-[3px] h-0.5 w-6 bg-black"
+                className="my-[3px] h-0.5 w-6 bg-white"
                 animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
                 variants={bottomLineVariants}
               />
             </button>
           </div>
           <motion.div
-            variants={{
-              open: {
-                height: "var(--height-open, 100dvh)",
-              },
-              close: {
-                height: "var(--height-closed, 0)",
-              },
-            }}
-            initial="close"
-            exit="close"
-            animate={isMobileMenuOpen ? "open" : "close"}
+            animate={isMobileMenuOpen ? "open" : "closed"}
+            initial="closed"
+            variants={heightVariants}
             transition={{ duration: 0.4 }}
-            className="overflow-auto px-[5%] lg:ml-6 lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+            className="overflow-auto px-[5%] lg:ml-6 lg:flex lg:items-center lg:px-0"
           >
-            {linksProp.map((link, index) => (
-              <div key={index} className="first:pt-4 lg:first:pt-0">
-                {link.megaMenu ? (
-                  <SubMenu megaMenu={link.megaMenu} title={link.title} isMobile={isMobile} />
-                ) : (
-                  <a href={link.url} className="block py-3 text-md lg:px-4 lg:py-6 lg:text-base">
-                    {link.title}
-                  </a>
-                )}
-              </div>
-            ))}
-            <div className="mt-6 flex w-full flex-col gap-y-4 pb-24 lg:hidden lg:pb-0">
-              {buttonsProp.map((button, index) => (
-                <button key={index} className="w-full" {...button}>
-                  {button.children}
-                </button>
+            <div className="space-y-4 py-6 lg:hidden">
+              {linksProp.map((link, index) => (
+                <a 
+                  key={index} 
+                  href={link.url} 
+                  className={`block text-base font-medium transition-colors ${
+                    isActive(link.url) 
+                      ? 'text-tahitigold' 
+                      : 'text-white hover:text-tahitigold'
+                  }`}
+                >
+                  {link.title}
+                </a>
               ))}
+              <div className="mt-6 flex w-full flex-col gap-y-4">
+                {buttonsProp.map((button, index) => (
+                  <a key={index} href={button.href} className={button.className}>
+                    {button.children}
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
+          <div className="hidden lg:ml-8 lg:flex lg:items-center lg:gap-8">
+            {linksProp.map((link, index) => (
+              <a 
+                key={index} 
+                href={link.url} 
+                className={`text-base font-medium transition-colors ${
+                  isActive(link.url) 
+                    ? 'text-tahitigold' 
+                    : 'text-white hover:text-tahitigold'
+                }`}
+              >
+                {link.title}
+              </a>
+            ))}
+          </div>
         </div>
-        <div className="hidden lg:flex lg:gap-4">
+        <div className="hidden lg:flex lg:items-center lg:gap-4">
           {buttonsProp.map((button, index) => (
-            <button key={index} {...button}>
+            <a key={index} href={button.href} className={button.className}>
               {button.children}
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -190,6 +210,7 @@ Navbar5.propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.shape({
     children: PropTypes.node,
     className: PropTypes.string,
+    href: PropTypes.string,
   })),
 };
 
@@ -322,139 +343,33 @@ export const Navbar5Defaults = {
     alt: "Logo image",
   },
   links: [
-    { title: "Link One", url: "#" },
-    { title: "Link Two", url: "#" },
-    { title: "Link Three", url: "#" },
-    {
-      title: "Link Four",
-      url: "#",
-      megaMenu: {
-        categoryLinks: [
-          {
-            title: "Page group one",
-            links: [
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 1",
-                },
-                title: "Page One",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 2",
-                },
-                title: "Page Two",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 3",
-                },
-                title: "Page Three",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 4",
-                },
-                title: "Page Four",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-            ],
-          },
-          {
-            title: "Page group two",
-            links: [
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 5",
-                },
-                title: "Page Five",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 6",
-                },
-                title: "Page Six",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 7",
-                },
-                title: "Page Seven",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-              {
-                url: "#",
-                image: {
-                  src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-                  alt: "Icon 8",
-                },
-                title: "Page Eight",
-                description: "Lorem ipsum dolor sit amet consectetur elit",
-              },
-            ],
-          },
-        ],
-        featuredSections: {
-          title: "Featured from Blog",
-          links: [
-            {
-              url: "#",
-              image: {
-                src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-                alt: "Relume placeholder image 1",
-              },
-              title: "Article Title",
-              description: "Lorem ipsum dolor sit amet consectetur elit",
-              button: { children: "Read more", className: "text-sm underline" },
-            },
-            {
-              url: "#",
-              image: {
-                src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
-                alt: "Relume placeholder image 2",
-              },
-              title: "Article Title",
-              description: "Lorem ipsum dolor sit amet consectetur elit",
-              button: { children: "Read more", className: "text-sm underline" },
-            },
-          ],
-        },
-        button: {
-          children: "See all articles",
-          className: "text-sm underline",
-        },
-      },
-    },
+    { title: "Home", url: "/" },
+    { title: "About Us", url: "/about" },
+    { title: "Membership", url: "/membership" },
+    { title: "Courses & Partners", url: "/courses" },
+    { title: "Contact Us", url: "/contact" },
   ],
   buttons: [
     {
-      children: "Button",
-      className: "text-sm underline",
+      children: "Login",
+      className: "text-white hover:text-tahitigold transition-colors font-medium",
+      href: route('login')
     },
     {
-      children: "Button",
-      className: "text-sm underline",
+      children: "Register",
+      className: "rounded-full border-2 border-tahitigold bg-tahitigold px-6 py-2 text-white hover:bg-transparent hover:text-tahitigold transition-all font-medium",
+      href: route('register')
     },
   ],
+};
+
+const heightVariants = {
+  open: {
+    height: "var(--height-open, 100dvh)",
+  },
+  closed: {
+    height: "var(--height-closed, 0)",
+  },
 };
 
 const topLineVariants = {
@@ -499,4 +414,3 @@ const bottomLineVariants = {
     transition: { duration: 0.2 },
   },
 };
-
