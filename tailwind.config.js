@@ -8,6 +8,7 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
+        './node_modules/@relume_io/relume-ui/dist/**/*.{js,ts,jsx,tsx}'
     ],
 
     theme: {
@@ -15,8 +16,15 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                primary: '#93c5fd',
+                secondary: '#c4b5fd',
+                accent: '#fb7185',
+                'accent-2': '#fdba74',
+            },
         },
     },
 
     plugins: [forms],
+    presets: [require('@relume_io/relume-tailwind')],
 };
