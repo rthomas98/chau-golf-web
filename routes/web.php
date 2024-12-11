@@ -18,6 +18,10 @@ Route::get('/about', function () {
     return Inertia::render('About');
 });
 
+Route::get('/tournaments', function () {
+    return Inertia::render('Tournaments');
+});
+
 Route::get('/membership', function () {
     return Inertia::render('Membership');
 });
