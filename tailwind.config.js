@@ -14,13 +14,16 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Sarabun', ...defaultTheme.fontFamily.sans],
+                headers: ['Alatsi', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primary: '#93c5fd',
-                secondary: '#c4b5fd',
-                accent: '#fb7185',
-                'accent-2': '#fdba74',
+                viridiangreen: '#677F70',
+                tahitigold: '#EB7B07',
+                mirage: '#181B26',
+                pearlbush: '#E0D6C8',
+                merino: '#F8F4ED',
+                white: '#FFFFFF',
             },
         },
     },
