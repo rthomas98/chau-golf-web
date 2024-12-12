@@ -38,6 +38,18 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 });
 
+Route::get('/store', function () {
+    return Inertia::render('Store');
+});
+
+Route::get('/store/product/{id}', function ($id) {
+    return Inertia::render('ProductDetail', ['productId' => $id]);
+});
+
+Route::get('/tournaments/{id}', function ($id) {
+    return Inertia::render('TournamentDetail', ['tournamentId' => $id]);
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

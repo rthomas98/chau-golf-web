@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Tournament Images</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="400" style="display: none;"></canvas>
+    <script>
+        function generateImage(text, filename) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add text
+            ctx.fillStyle = '#666666';
+            ctx.font = '30px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, canvas.width/2, canvas.height/2);
+            
+            // Convert to image
+            const img = canvas.toDataURL('image/jpeg', 0.8);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = img;
+            link.click();
+        }
+
+        // Generate tournament images
+        generateImage('Spring Championship 2024', 'spring-championship.jpg');
+        generateImage('Tournament Format & Rules', 'format-rules.jpg');
+    </script>
+</body>
+</html>

@@ -23,7 +23,7 @@ const FeaturedEvent = ({
         <motion.img 
           src={image.src} 
           alt={image.alt} 
-          className="absolute size-full object-cover transition-transform duration-300 group-hover:scale-105" 
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
         />
         <div className="absolute right-4 top-4 flex min-w-28 flex-col items-center rounded-lg bg-white/95 px-1 py-3 text-sm backdrop-blur-sm">
           <span className="text-darkviridiangreen">{date.weekday}</span>
@@ -191,7 +191,7 @@ export const EventsDefaults = {
     {
       url: "#",
       image: {
-        src: "/images/event-1.jpg",
+        src: "https://images.pexels.com/photos/914682/pexels-photo-914682.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         alt: "Spring Championship Tournament"
       },
       date: {
@@ -210,7 +210,7 @@ export const EventsDefaults = {
     {
       url: "#",
       image: {
-        src: "/images/event-2.jpg",
+        src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop",
         alt: "Networking Golf Day"
       },
       date: {
@@ -229,7 +229,7 @@ export const EventsDefaults = {
     {
       url: "#",
       image: {
-        src: "/images/event-3.jpg",
+        src: "https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?q=80&w=1974&auto=format&fit=crop",
         alt: "Junior Golf Camp"
       },
       date: {

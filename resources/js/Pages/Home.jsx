@@ -154,7 +154,7 @@ export default function Home() {
                         title: "View Upcoming Events"
                     }
                 ]}
-                video="https://d2of6bhnpl91ni.cloudfront.net/cms/golf-swing-slow-motion-1080p_rVCXTVtH.mp4"
+                video="/videos/3514135261-preview.mp4"
                 videoType="video/mp4"
             />
             <Blog 
@@ -220,7 +220,7 @@ export default function Home() {
                     {
                         url: "#",
                         image: {
-                            src: "https://images.unsplash.com/photo-1587174486073-44a702c2d44c?auto=format&fit=crop&q=80&w=2070",
+                            src: "../images/event-1.jpg",
                             alt: "Spring Championship Tournament"
                         },
                         date: {
