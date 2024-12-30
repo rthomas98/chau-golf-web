@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Check } from "lucide-react";
+import { Link } from '@inertiajs/react';
 
 const PricingToggle = ({ isYearly, onToggle }) => (
   <div className="mb-8 flex justify-center">
@@ -26,8 +27,9 @@ const PricingToggle = ({ isYearly, onToggle }) => (
   </div>
 );
 
-const PricingCard = ({ plan, isPopular, isYearly }) => {
+const PricingCard = ({ plan, isPopular, isYearly, auth }) => {
   const price = isYearly ? plan.price : Math.round(plan.price / 0.8 / 12);
+  const isApplicationPage = window.location.pathname === '/membership/apply';
   
   return (
     <div className={`flex flex-col rounded-lg p-8 ${isPopular ? 'bg-chaugreen/10 border-2 border-chaugreen' : 'bg-gray'}`}>
@@ -59,21 +61,55 @@ const PricingCard = ({ plan, isPopular, isYearly }) => {
           </div>
         ))}
       </div>
-      <button
-        className={`mt-auto rounded-lg px-6 py-3 font-semibold transition-colors ${
-          isPopular
-            ? 'bg-chaugreen text-white hover:bg-black'
-            : 'bg-chaugreen text-white hover:bg-black'
-        }`}
-      >
-        {plan.buttonText}
-      </button>
+      {isApplicationPage ? (
+        <button
+          type="button"
+          onClick={() => document.getElementById('membership-form').scrollIntoView({ behavior: 'smooth' })}
+          className={`mt-auto rounded-lg px-6 py-3 font-semibold text-center transition-colors ${
+            isPopular
+              ? 'bg-chaugreen text-white hover:bg-black'
+              : 'bg-chaugreen text-white hover:bg-black'
+          }`}
+        >
+          Select This Plan
+        </button>
+      ) : auth?.user ? (
+        <Link
+          href={route('membership.apply')}
+          className={`mt-auto rounded-lg px-6 py-3 font-semibold text-center transition-colors ${
+            isPopular
+              ? 'bg-chaugreen text-white hover:bg-black'
+              : 'bg-chaugreen text-white hover:bg-black'
+          }`}
+        >
+          {plan.buttonText}
+        </Link>
+      ) : (
+        <div className="space-y-3">
+          <Link
+            href={route('login')}
+            className={`block w-full rounded-lg px-6 py-3 font-semibold text-center transition-colors ${
+              isPopular
+                ? 'bg-chaugreen text-white hover:bg-black'
+                : 'bg-chaugreen text-white hover:bg-black'
+            }`}
+          >
+            Log in to Apply
+          </Link>
+          <Link
+            href={route('register')}
+            className="block w-full rounded-lg px-6 py-3 font-semibold text-center border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white transition-colors"
+          >
+            Register Now
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
 
 export const Pricing3 = (props) => {
-  const { tagline, heading, description, plans } = {
+  const { tagline, heading, description, plans, auth } = {
     ...Pricing3Defaults,
     ...props,
   };
@@ -98,6 +134,7 @@ export const Pricing3 = (props) => {
               plan={plan} 
               isPopular={plan.isPopular} 
               isYearly={isYearly}
+              auth={auth}
             />
           ))}
         </div>
@@ -110,6 +147,7 @@ Pricing3.propTypes = {
   tagline: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
+  auth: PropTypes.object,
   plans: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

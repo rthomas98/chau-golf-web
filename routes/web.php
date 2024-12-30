@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\MembershipApplicationController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -50,14 +51,27 @@ Route::get('/tournaments/{id}', function ($id) {
     return Inertia::render('TournamentDetail', ['tournamentId' => $id]);
 });
 
+// Member Dashboard
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    if (auth()->user()->hasAnyRole(['super_admin', 'tournament_manager'])) {
+        return redirect('/admin');
+    }
+    
+    return Inertia::render('Dashboard', [
+        'hasMembership' => auth()->user()->membership()->exists(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Profile Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/membership/apply', [MembershipApplicationController::class, 'create'])->name('membership.apply');
+    Route::post('/membership', [MembershipApplicationController::class, 'store'])->name('membership.store');
 });
 
 require __DIR__.'/auth.php';
