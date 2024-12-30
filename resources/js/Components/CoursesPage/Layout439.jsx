@@ -4,9 +4,9 @@ import { ChevronRight } from 'lucide-react';
 const Button = ({ variant = "primary", children, className = "", ...props }) => {
   const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors";
   const variants = {
-    primary: "bg-tahitigold text-white hover:bg-midtahitigold",
-    secondary: "bg-transparent border-2 border-viridiangreen text-viridiangreen hover:bg-lowviridiangreen",
-    link: "text-viridiangreen hover:text-darkviridiangreen inline-flex items-center gap-2"
+    primary: "bg-chaugreen text-white hover:bg-black",
+    secondary: "bg-transparent border-2 border-black text-black hover:bg-gray",
+    link: "text-black hover:text-chaugreen inline-flex items-center gap-2"
   };
 
   return (

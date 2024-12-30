@@ -21,13 +21,13 @@ export const Layout414 = (props) => {
   return (
     <section
       ref={sectionRef}
-      className="overflow-hidden px-[5%] py-16 bg-gradient-to-b from-pearlbush to-merino md:py-24 lg:py-28"
+      className="overflow-hidden px-[5%] py-1 bg-white from-pearlbush to-merino md:py-24 lg:py-16"
     >
       <div className="container mx-auto">
         <div className="flex flex-col items-center">
           <div className="mb-12 grid grid-cols-1 items-start justify-between gap-x-12 gap-y-8 md:mb-18 md:grid-cols-2 md:gap-x-12 md:gap-y-8 lg:mb-20 lg:gap-x-20">
             <div>
-              <p className="mb-3 font-semibold text-tahitigold md:mb-4">{tagline}</p>
+              <p className="mb-3 font-size-md font-semibold text-tahitigold md:mb-4">{tagline}</p>
               <h2 className="text-5xl font-bold text-darkerviridiangreen md:text-7xl lg:text-8xl">{heading}</h2>
             </div>
             <div>

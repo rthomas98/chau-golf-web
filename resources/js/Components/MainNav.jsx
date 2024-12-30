@@ -73,12 +73,12 @@ export const Navbar5 = ({ logo, links, buttons, ...props }) => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-pearlbush bg-viridiangreen lg:min-h-18 lg:px-[5%]">
+    <nav className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-pearlbush bg-white lg:min-h-18 lg:px-[5%]">
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="lg:flex">
           <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
             <a href="/" className="text-2xl font-headers text-white hover:text-tahitigold transition-colors">
-              ChauChau Golf
+              <img src="/images/ChauChau-Golf.svg" alt="ChauChau Golf" className="h-12" />
             </a>
             <button
               className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
@@ -115,7 +115,7 @@ export const Navbar5 = ({ logo, links, buttons, ...props }) => {
                   href={link.url} 
                   className={`block text-base font-medium transition-colors ${
                     isActive(link.url) 
-                      ? 'text-tahitigold' 
+                      ? 'text-black' 
                       : 'text-white hover:text-tahitigold'
                   }`}
                 >
@@ -139,7 +139,7 @@ export const Navbar5 = ({ logo, links, buttons, ...props }) => {
                 className={`text-base font-medium transition-colors ${
                   isActive(link.url) 
                     ? 'text-tahitigold' 
-                    : 'text-white hover:text-tahitigold'
+                    : 'text-tahitigold hover:text-black'
                 }`}
               >
                 {link.title}
@@ -354,12 +354,12 @@ export const Navbar5Defaults = {
   buttons: [
     {
       children: "Login",
-      className: "text-white hover:text-tahitigold transition-colors font-medium",
+      className: "text-chaugreen hover:text-black transition-colors font-medium",
       href: route('login')
     },
     {
       children: "Register",
-      className: "rounded-full border-2 border-tahitigold bg-tahitigold px-6 py-2 text-white hover:bg-transparent hover:text-tahitigold transition-all font-medium",
+      className: "rounded-lg border-2 border-chaugreen bg-chaugreen px-6 py-2 text-white hover:bg-transparent hover:text-chaugreen transition-all font-medium",
       href: route('register')
     },
   ],

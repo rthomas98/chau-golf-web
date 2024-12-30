@@ -3,10 +3,10 @@ import { ChevronRight, ChevronLeft, Check } from 'lucide-react';
 
 const Input = ({ label, type = "text", ...props }) => (
   <div className="mb-4">
-    <label className="mb-2 block text-sm font-semibold text-darkerviridiangreen">{label}</label>
+    <label className="mb-2 block text-sm font-semibold text-black">{label}</label>
     <input
       type={type}
-      className="w-full rounded-lg border border-viridiangreen/20 bg-white px-4 py-2 focus:border-tahitigold focus:outline-none focus:ring-2 focus:ring-tahitigold/20"
+      className="w-full rounded-lg border border-chaugreen/20 bg-white px-4 py-2 focus:border-chaugreen focus:outline-none focus:ring-2 focus:ring-chaugreen/20"
       {...props}
     />
   </div>
@@ -14,9 +14,9 @@ const Input = ({ label, type = "text", ...props }) => (
 
 const TextArea = ({ label, ...props }) => (
   <div className="mb-4">
-    <label className="mb-2 block text-sm font-semibold text-darkerviridiangreen">{label}</label>
+    <label className="mb-2 block text-sm font-semibold text-black">{label}</label>
     <textarea
-      className="w-full rounded-lg border border-viridiangreen/20 bg-white px-4 py-2 focus:border-tahitigold focus:outline-none focus:ring-2 focus:ring-tahitigold/20"
+      className="w-full rounded-lg border border-chaugreen/20 bg-white px-4 py-2 focus:border-chaugreen focus:outline-none focus:ring-2 focus:ring-chaugreen/20"
       rows="4"
       {...props}
     />
@@ -25,9 +25,9 @@ const TextArea = ({ label, ...props }) => (
 
 const Select = ({ label, options, ...props }) => (
   <div className="mb-4">
-    <label className="mb-2 block text-sm font-semibold text-darkerviridiangreen">{label}</label>
+    <label className="mb-2 block text-sm font-semibold text-black">{label}</label>
     <select
-      className="w-full rounded-lg border border-viridiangreen/20 bg-white px-4 py-2 focus:border-tahitigold focus:outline-none focus:ring-2 focus:ring-tahitigold/20"
+      className="w-full rounded-lg border border-chaugreen/20 bg-white px-4 py-2 focus:border-chaugreen focus:outline-none focus:ring-2 focus:ring-chaugreen/20"
       {...props}
     >
       {options.map((option) => (
@@ -42,8 +42,8 @@ const Select = ({ label, options, ...props }) => (
 const Button = ({ variant = "primary", children, className = "", ...props }) => {
   const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors flex items-center gap-2";
   const variants = {
-    primary: "bg-tahitigold text-white hover:bg-midtahitigold",
-    secondary: "bg-transparent border-2 border-viridiangreen text-viridiangreen hover:bg-lowviridiangreen",
+    primary: "bg-chaugreen text-white hover:bg-black",
+    secondary: "bg-transparent border-2 border-chaugreen text-chaugreen hover:bg-gray",
   };
 
   return (
@@ -61,10 +61,10 @@ const StepIndicator = ({ currentStep, totalSteps }) => {
           key={index}
           className={`flex h-8 w-8 items-center justify-center rounded-full ${
             index < currentStep
-              ? "bg-tahitigold text-white"
+              ? "bg-chaugreen text-white"
               : index === currentStep
-              ? "bg-tahitigold/20 text-tahitigold"
-              : "bg-viridiangreen/10 text-viridiangreen"
+              ? "bg-chaugreen/20 text-chaugreen"
+              : "bg-gray text-black"
           }`}
         >
           {index < currentStep ? (
@@ -262,10 +262,16 @@ export const PartnershipForm = () => {
               <Button
                 type="submit"
                 variant="primary"
-                className={currentStep === 0 ? "ml-auto" : ""}
+                className={currentStep === 0 ? "w-full" : ""}
               >
-                {currentStep === steps.length - 1 ? "Submit Application" : "Next"}
-                {currentStep !== steps.length - 1 && <ChevronRight className="h-5 w-5" />}
+                {currentStep === steps.length - 1 ? (
+                  "Submit Application"
+                ) : (
+                  <div className="flex items-center gap-2">
+                    Next
+                    <ChevronRight className="h-5 w-5" />
+                  </div>
+                )}
               </Button>
             </div>
           </form>

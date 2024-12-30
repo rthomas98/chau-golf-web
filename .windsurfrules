@@ -1,0 +1,98 @@
+# Windsurf rules
+
+## General
+
+# AI Interaction Rules
+- Do not modify existing code unless explicitly requested
+- Maintain existing code style and patterns when suggesting additions
+- Respect the established project structure
+- Follow the patterns shown in existing files
+
+# Error Handling
+- Point out potential errors or issues without modifying the code
+- Provide explanations of why something might be problematic
+- Suggest improvements as separate code blocks
+- Wait for explicit confirmation before making changes
+
+# Code Suggestions
+- Present new code in separate code blocks
+- Include file paths when suggesting changes
+- Show context around suggested changes
+- Maintain existing naming conventions and patterns
+
+# Documentation
+- Explain reasoning behind suggestions
+- Reference relevant documentation when applicable
+- Provide clear examples of usage
+- Include context for changes
+
+# File Structure
+- Respect existing file organization
+- Follow established naming conventions
+- Maintain current component hierarchy
+- Keep feature-specific code in appropriate directories
+
+# Component Patterns
+- Follow existing component structure
+- Maintain current prop patterns
+- Use established default export patterns
+- Keep consistent with current styling approach
+
+# Brand Styling
+- Use defined color palette from tailwind.config.js:
+  * Primary: viridiangreen (#00b4d8) and variants
+  * Secondary: tahitigold (#12a34a) and variants
+  * Neutral: mirage (#181B26) and variants
+  * Background: merino (#F8F4ED) and variants
+  * Accent: pearlbush (#E0D6C8) and variants
+
+# Typography
+- Use font families as defined:
+  * Headers: 'Alatsi' font
+  * Body text: 'Sarabun' font
+- Follow established font weights and sizes
+
+# Button Styles
+- Primary buttons:
+  * Background: tahitigold
+  * Hover: darktahitigold
+  * Text: white
+  * Rounded-lg for corners
+- Secondary buttons:
+  * Background: viridiangreen
+  * Hover: darkviridiangreen
+  * Text: white
+  * Rounded-lg for corners
+- Outline buttons:
+  * Border: current brand color
+  * Hover: low variant of brand color
+  * Text: current brand color
+
+# Form Elements
+- Input fields:
+  * Border: viridiangreen/20
+  * Focus: tahitigold ring
+  * Background: white
+  * Text: darkviridiangreen
+  * Rounded-lg for corners
+- Select dropdowns:
+  * Match input field styling
+  * Custom chevron in tahitigold
+- Checkboxes and radios:
+  * Accent color: tahitigold
+  * Focus ring: tahitigold/20
+- Labels:
+  * Text: darkerviridiangreen
+  * Font-weight: semibold
+
+# Version Control
+- Do not suggest changes to version control files
+- Respect .gitignore patterns
+- Maintain existing file permissions
+- Keep line endings consistent
+
+# Dependencies
+- Do not modify package versions unless requested
+- Respect current dependency structure
+- Maintain compatibility with existing versions
+- Follow established import patterns

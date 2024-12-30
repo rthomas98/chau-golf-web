@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Trophy, Users, Calendar, Medal } from "lucide-react";
 
 const IconWrapper = ({ icon: Icon }) => (
-  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-lowtahitigold md:mb-4">
-    <Icon className="h-6 w-6 text-tahitigold" />
+  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gray md:mb-4">
+    <Icon className="h-6 w-6 text-chaugreen" />
   </div>
 );
 
@@ -14,22 +14,22 @@ export const Layout12 = (props) => {
     ...props,
   };
   return (
-    <section id="relume" className="bg-lowviridiangreen px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="relume" className="bg-gray px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>
-            <h1 className="mb-5 text-4xl font-bold leading-[1.2] text-darkerviridiangreen md:mb-6 md:text-5xl lg:text-6xl">
+            <h1 className="mb-5 text-4xl font-bold leading-[1.2] text-black md:mb-6 md:text-5xl lg:text-6xl">
               {heading}
             </h1>
-            <p className="mb-6 text-darkviridiangreen md:mb-8 md:text-md">{description}</p>
+            <p className="mb-6 text-black md:mb-8 md:text-md">{description}</p>
             <div className="grid grid-cols-1 gap-6 py-2 sm:grid-cols-2">
               {subHeadings.map((subHeading, index) => (
                 <div key={index}>
                   <IconWrapper icon={subHeading.icon} />
-                  <h6 className="mb-3 text-md font-bold leading-[1.4] text-darkerviridiangreen md:mb-4 md:text-xl">
+                  <h6 className="mb-3 text-md font-bold leading-[1.4] text-black md:mb-4 md:text-xl">
                     {subHeading.title}
                   </h6>
-                  <p className="text-darkviridiangreen">{subHeading.description}</p>
+                  <p className="text-black">{subHeading.description}</p>
                 </div>
               ))}
             </div>

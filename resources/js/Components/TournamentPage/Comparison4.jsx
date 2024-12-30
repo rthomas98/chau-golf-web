@@ -1,17 +1,62 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import { Check, ChevronRight } from "lucide-react";
 
-const Comparison4 = ({ tiers }) => {
+const defaultTiers = [
+  {
+    name: "Standard Entry",
+    price: 299,
+    description: "Perfect for individual players seeking a professional tournament experience",
+    features: [
+      "Tournament entry",
+      "Practice round",
+      "Cart rental",
+      "Range balls",
+      "Welcome package"
+    ]
+  },
+  {
+    name: "Premium Entry",
+    price: 399,
+    description: "Enhanced package with additional practice opportunities and premium perks",
+    featured: true,
+    features: [
+      "Tournament entry",
+      "Two practice rounds",
+      "Cart rental",
+      "Unlimited range balls",
+      "Premium welcome package",
+      "Tournament polo"
+    ]
+  },
+  {
+    name: "VIP Package",
+    price: 599,
+    description: "Ultimate tournament experience with exclusive benefits and unlimited access",
+    features: [
+      "Tournament entry",
+      "Unlimited practice rounds",
+      "Cart rental",
+      "Unlimited range balls",
+      "Luxury welcome package",
+      "Tournament polo",
+      "VIP parking",
+      "Exclusive reception access"
+    ]
+  }
+];
+
+const Comparison4 = ({ tiers = defaultTiers }) => {
   return (
-    <div className="bg-merino py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl sm:text-center">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-white">
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl font-bold tracking-tight text-darkviridiangreen sm:text-4xl"
+            className="mb-5 text-4xl font-bold text-black md:text-5xl lg:text-6xl"
           >
             Tournament Packages
           </motion.h2>
@@ -19,7 +64,7 @@ const Comparison4 = ({ tiers }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg leading-8 text-gray-600"
+            className="mb-12 text-lg text-black/70 md:mb-16 lg:mb-20 md:text-xl"
           >
             Choose the perfect package that suits your tournament experience.
           </motion.p>
@@ -29,78 +74,82 @@ const Comparison4 = ({ tiers }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-3"
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-3"
         >
           {tiers.map((tier, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10 ${
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`relative flex flex-col overflow-hidden rounded-2xl border ${
                 tier.featured
-                  ? "relative z-10 sm:-mx-8 sm:rounded-xl lg:mx-0"
-                  : ""
+                  ? "border-chaugreen bg-chaugreen/5 shadow-lg"
+                  : "border-gray/10 bg-white"
               }`}
             >
               {tier.featured && (
-                <div className="absolute inset-x-0 -top-px flex justify-center">
-                  <div className="inline-flex items-center rounded-full bg-tahitigold px-4 py-1 text-sm font-semibold text-white ring-1 ring-inset ring-tahitigold">
+                <div className="absolute -right-20 top-8 rotate-45">
+                  <div className="w-[170px] bg-chaugreen py-1 text-center text-sm text-white shadow-sm">
                     Most Popular
                   </div>
                 </div>
               )}
-              <div>
-                <div className="flex items-center justify-between gap-x-4">
-                  <h3 className="text-lg font-semibold leading-8 text-darkviridiangreen">
-                    {tier.name}
-                  </h3>
+
+              <div className="p-8">
+                <h3 className="text-xl font-semibold text-black">{tier.name}</h3>
+                <p className="mt-4 text-base text-black/70">{tier.description}</p>
+                <div className="mt-6 flex items-baseline gap-x-1">
+                  <span className="text-4xl font-bold text-black">${tier.price}</span>
+                  <span className="text-sm text-black/70">/player</span>
                 </div>
-                <p className="mt-4 text-sm leading-6 text-gray-600">
-                  {tier.description}
-                </p>
-                <p className="mt-6 flex items-baseline gap-x-1">
-                  <span className="text-4xl font-bold tracking-tight text-darkviridiangreen">
-                    ${tier.price}
-                  </span>
-                  <span className="text-sm font-semibold leading-6 text-gray-600">
-                    /player
-                  </span>
-                </p>
-                <ul
-                  role="list"
-                  className="mt-8 space-y-3 text-sm leading-6 text-gray-600"
-                >
+
+                <ul role="list" className="mt-8 space-y-3">
                   {tier.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex gap-x-3">
-                      <svg
-                        className="h-6 w-5 flex-none text-tahitigold"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      {feature}
+                    <li key={featureIndex} className="flex items-center gap-3">
+                      <Check className={`h-5 w-5 flex-shrink-0 ${tier.featured ? 'text-chaugreen' : 'text-black/50'}`} />
+                      <span className="text-black/70">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <a
-                href="#register"
-                className={`mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                  tier.featured
-                    ? "bg-tahitigold text-white hover:bg-opacity-90 focus-visible:outline-tahitigold"
-                    : "bg-darkviridiangreen text-white hover:bg-opacity-90 focus-visible:outline-darkviridiangreen"
-                }`}
-              >
-                Register Now
-              </a>
-            </div>
+
+              <div className="mt-auto flex p-8 pt-0">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group inline-flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all ${
+                    tier.featured
+                      ? "bg-chaugreen text-white hover:bg-black"
+                      : "bg-black text-white hover:bg-chaugreen"
+                  }`}
+                >
+                  Select Package
+                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </motion.button>
+              </div>
+            </motion.div>
           ))}
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mt-16 max-w-2xl text-center"
+        >
+          <p className="text-base text-black/70">
+            All packages include tournament entry, access to practice facilities, and participation in the awards ceremony.
+            <br />
+            <a href="#contact" className="mt-2 inline-flex items-center gap-1 text-chaugreen hover:text-black">
+              Contact us for custom packages <ChevronRight className="h-4 w-4" />
+            </a>
+          </p>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -113,7 +162,7 @@ Comparison4.propTypes = {
       features: PropTypes.arrayOf(PropTypes.string).isRequired,
       featured: PropTypes.bool,
     })
-  ).isRequired,
+  ),
 };
 
 export default Comparison4;

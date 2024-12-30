@@ -8,28 +8,28 @@ export const Layout18 = (props) => {
     ...props,
   };
   return (
-    <section className="bg-tahitigold/10 px-[5%] py-16 md:py-24 lg:py-28">
+    <section className="bg-gray px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>
-            <h3 className="mb-5 text-4xl font-bold leading-[1.2] text-darkerviridiangreen md:mb-6 md:text-5xl lg:text-6xl">
+            <h3 className="mb-5 text-4xl font-bold leading-[1.2] text-black md:mb-6 md:text-5xl lg:text-6xl">
               {heading}
             </h3>
-            <p className="mb-5 text-darkviridiangreen md:mb-6 md:text-md">{description}</p>
+            <p className="mb-5 text-black/70 md:mb-6 md:text-md">{description}</p>
             <ul className="grid grid-cols-1 gap-4 py-2">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-start space-x-4">
                   <div className="flex-none">
                     {feature.icon}
                   </div>
-                  <p className="text-darkviridiangreen">{feature.paragraph}</p>
+                  <p className="text-black/70">{feature.paragraph}</p>
                 </li>
               ))}
             </ul>
           </div>
           <div className="aspect-w-16 aspect-h-9">
             <img 
-              src="https://images.unsplash.com/photo-1592919505780-303950717480?q=80&w=3270&auto=format&fit=crop" 
+              src={image.src}
               className="w-full rounded-lg object-cover shadow-lg" 
               alt={image.alt} 
             />
@@ -61,15 +61,15 @@ export const Layout18Defaults = {
     "Our state-of-the-art facilities are designed to enhance your golfing experience and provide the perfect environment for both practice and leisure.",
   features: [
     {
-      icon: <Flag className="h-6 w-6 text-tahitigold" />,
+      icon: <Flag className="h-6 w-6 text-chaugreen" />,
       paragraph: "Advanced practice facilities including driving range, putting greens, and short game area",
     },
     {
-      icon: <Store className="h-6 w-6 text-tahitigold" />,
+      icon: <Store className="h-6 w-6 text-chaugreen" />,
       paragraph: "Fully stocked pro shop with the latest equipment and professional fitting services",
     },
     {
-      icon: <Utensils className="h-6 w-6 text-tahitigold" />,
+      icon: <Utensils className="h-6 w-6 text-chaugreen" />,
       paragraph: "Elegant clubhouse with fine dining restaurant and casual lounge areas",
     },
   ],

@@ -4,9 +4,9 @@ import { ChevronRight } from 'lucide-react';
 const Button = ({ variant = "primary", children, className = "", ...props }) => {
   const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors";
   const variants = {
-    primary: "bg-white text-hightahitigold hover:bg-lowpearlbush",
+    primary: "bg-white text-chaugreen hover:bg-gray",
     secondary: "bg-transparent border-2 border-white text-white hover:bg-white/10",
-    link: "text-white hover:text-lowpearlbush inline-flex items-center gap-2"
+    link: "text-white hover:text-gray inline-flex items-center gap-2"
   };
 
   return (
@@ -23,7 +23,7 @@ export const Layout216 = (props) => {
     ...props,
   };
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-hightahitigold" {...rest}>
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-chaugreen" {...rest}>
       <div className="container">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
           <div className="order-2 md:order-1">

@@ -4,16 +4,16 @@ import { ChevronRight } from "lucide-react";
 
 const Button = ({ variant = "primary", children, size, iconRight, ...props }) => {
   const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors";
-  const variants = {
-    primary: "bg-tahitigold text-white hover:bg-midtahitigold",
-    secondary: "bg-viridiangreen text-white hover:bg-darkviridiangreen",
-    link: "text-tahitigold hover:text-midtahitigold p-0 flex items-center gap-2"
+  const buttonStyles = {
+    primary: "bg-chaugreen text-white hover:bg-black",
+    secondary: "bg-chaugreen text-white hover:bg-black",
+    link: "text-chaugreen hover:text-black p-0 flex items-center gap-2"
   };
 
   const sizeClasses = size === "link" ? "" : baseClasses;
 
   return (
-    <button className={`${sizeClasses} ${variants[variant]}`} {...props}>
+    <button className={`${sizeClasses} ${buttonStyles[variant]}`} {...props}>
       {children}
       {iconRight && iconRight}
     </button>
@@ -27,7 +27,7 @@ export const Layout437 = (props) => {
   };
 
   return (
-    <section id="relume" className="bg-lowviridiangreen px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="relume" className="bg-gray px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="grid grid-cols-1 items-start gap-x-16 gap-y-12 md:grid-cols-[1fr_0.5fr]">
           <div className="order-last flex flex-col justify-center md:order-first">
@@ -46,13 +46,13 @@ export const Layout437 = (props) => {
           </div>
           <div className="flex h-full flex-col justify-between">
             <div>
-              <p className="mb-3 font-semibold text-tahitigold md:mb-4">{tagline}</p>
-              <h2 className="mb-5 text-5xl font-bold text-darkerviridiangreen md:mb-6 md:text-7xl lg:text-8xl">
+              <p className="mb-3 font-semibold text-chaugreen md:mb-4">{tagline}</p>
+              <h2 className="mb-5 text-5xl font-bold text-black md:mb-6 md:text-7xl lg:text-8xl">
                 {heading}
               </h2>
             </div>
             <div className="ml-[7.5%]">
-              <p className="text-darkviridiangreen md:text-md">{description}</p>
+              <p className="text-black md:text-md">{description}</p>
               <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
                 {buttons.map((button, index) => (
                   <Button key={index} {...button}>

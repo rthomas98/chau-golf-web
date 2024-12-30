@@ -35,19 +35,19 @@ export const Header = (props) => {
   };
 
   return (
-    <section id="hero" className="bg-viridiangreen px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="hero" className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="rb-12 mb-12 grid grid-cols-1 items-start gap-5 md:mb-18 md:grid-cols-2 md:gap-12 lg:mb-20 lg:gap-20">
-          <h1 className="text-6xl font-bold text-white md:text-8xl lg:text-9xl">{heading}</h1>
+          <h1 className="text-6xl font-bold text-black md:text-8xl lg:text-9xl">{heading}</h1>
           <div className="mx-[7.5%] flex flex-col justify-end md:mt-48">
-            <p className="text-lg text-white/90 md:text-xl">{description}</p>
+            <p className="text-lg text-black/90 md:text-xl">{description}</p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               {buttons.map((button, index) => (
                 <button
                   key={index}
                   className={`rounded-md px-6 py-3 font-medium transition-colors ${
                     button.variant === "secondary"
-                      ? "border-2 border-white text-white hover:bg-white hover:text-viridiangreen"
+                      ? "border-2 border-black text-black hover:bg-white hover:text-viridiangreen"
                       : "bg-tahitigold text-white hover:bg-tahitigold/90"
                   }`}
                 >

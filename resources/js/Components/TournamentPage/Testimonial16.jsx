@@ -1,17 +1,57 @@
- import React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import { Star, Trophy } from "lucide-react";
 
-const Testimonial16 = ({ testimonials }) => {
+const getAvatarUrl = (name) => {
+  const encodedName = encodeURIComponent(name);
+  return `https://ui-avatars.com/api/?name=${encodedName}&background=059669&color=fff&size=128&bold=true`;
+};
+
+const defaultTestimonials = [
+  {
+    name: "Michael Chen",
+    title: "PGA Professional",
+    year: "2023",
+    quote: "Exceptionally well-organized tournament with top-notch facilities. The attention to detail and professional atmosphere made this event truly memorable.",
+    rating: 5,
+    achievement: "Tournament Champion 2023"
+  },
+  {
+    name: "Sarah Rodriguez",
+    title: "Amateur Champion",
+    year: "2023",
+    quote: "The competition level was outstanding, and the course was in perfect condition. From registration to the awards ceremony, everything ran smoothly.",
+    rating: 5,
+    achievement: "Runner-up 2023"
+  },
+  {
+    name: "David Thompson",
+    title: "Golf Enthusiast",
+    year: "2023",
+    quote: "An incredible experience that exceeded all expectations. The practice facilities, tournament organization, and networking opportunities were exceptional.",
+    rating: 5
+  },
+  {
+    name: "Emma Wilson",
+    title: "Junior Division Winner",
+    year: "2023",
+    quote: "As a young golfer, this tournament provided the perfect platform to compete at a high level. The inclusive atmosphere and support from organizers was amazing.",
+    rating: 5,
+    achievement: "Junior Division Champion 2023"
+  }
+];
+
+const Testimonial16 = ({ testimonials = defaultTestimonials }) => {
   return (
-    <div className="bg-white py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-white">
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl font-bold tracking-tight text-darkviridiangreen sm:text-4xl"
+            className="mb-5 text-4xl font-bold text-black md:text-5xl lg:text-6xl"
           >
             Player Testimonials
           </motion.h2>
@@ -19,7 +59,7 @@ const Testimonial16 = ({ testimonials }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg leading-8 text-gray-600"
+            className="mb-12 text-lg text-black/70 md:mb-16 lg:mb-20 md:text-xl"
           >
             Hear what past participants have to say about their tournament experience.
           </motion.p>
@@ -29,72 +69,73 @@ const Testimonial16 = ({ testimonials }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2"
         >
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex flex-col bg-white rounded-2xl shadow-lg p-8 ring-1 ring-gray-200"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex h-full flex-col rounded-2xl border border-gray/10 bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
             >
-              <div className="flex items-center gap-x-4">
+              <div className="mb-6 flex items-center gap-4">
                 <img
-                  src={testimonial.avatar}
+                  src={getAvatarUrl(testimonial.name)}
                   alt={testimonial.name}
-                  className="h-16 w-16 rounded-full bg-gray-50"
+                  className="h-16 w-16 rounded-full object-cover shadow-sm"
                 />
                 <div>
-                  <div className="font-semibold text-darkviridiangreen">
+                  <h3 className="text-lg font-semibold text-black">
                     {testimonial.name}
-                  </div>
-                  <div className="text-sm leading-6 text-gray-600">
-                    {testimonial.year} Participant
-                  </div>
+                  </h3>
+                  <p className="text-sm text-black/70">
+                    {testimonial.title} • {testimonial.year}
+                  </p>
                 </div>
               </div>
-              <div className="mt-8 flex">
-                {[...Array(5)].map((_, i) => (
-                  <svg
+
+              <div className="mb-6 flex">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star
                     key={i}
-                    className={`h-5 w-5 ${
-                      i < testimonial.rating
-                        ? "text-tahitigold"
-                        : "text-gray-300"
-                    }`}
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    className="h-5 w-5 fill-chaugreen text-chaugreen"
+                  />
                 ))}
               </div>
-              <blockquote className="mt-6 text-base leading-7 text-gray-600">
-                <p>"{testimonial.quote}"</p>
+
+              <blockquote className="mb-6 flex-grow text-base text-black/70">
+                "{testimonial.quote}"
               </blockquote>
+
               {testimonial.achievement && (
-                <div className="mt-6 flex items-center gap-x-2 text-sm text-tahitigold">
-                  <svg
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 2a1 1 0 00-.894.553L7.382 6H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V8a1 1 0 100-2h-3.382l-1.724-3.447A1 1 0 0010 2zm0 2.618L11.724 8H8.276L10 4.618z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <div className="flex items-center gap-2 rounded-lg bg-chaugreen/5 p-3 text-sm text-chaugreen">
+                  <Trophy className="h-5 w-5" />
                   <span>{testimonial.achievement}</span>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mt-16 max-w-2xl text-center"
+        >
+          <p className="text-base text-black/70">
+            Join our next tournament and be part of our growing community of passionate golfers.
+            <br />
+            <a href="#register" className="mt-2 inline-flex items-center gap-1 text-chaugreen hover:text-black">
+              Register for upcoming tournaments →
+            </a>
+          </p>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -102,13 +143,13 @@ Testimonial16.propTypes = {
   testimonials: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
       year: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
       quote: PropTypes.string.isRequired,
       achievement: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
 
 export default Testimonial16;

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 const PortfolioHeader3Defaults = {
   heading: "Tournament name here",
@@ -19,7 +20,7 @@ const PortfolioHeader3Defaults = {
     },
   ],
   image: {
-    src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image-landscape.svg",
+    src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2970&auto=format&fit=crop",
     alt: "Tournament banner image",
   },
 };
@@ -31,33 +32,52 @@ const PortfolioHeader3 = (props) => {
   };
 
   return (
-    <section id="tournament-header" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="tournament-header" className="px-[5%] py-16 md:py-24 lg:py-28 bg-white">
       <div className="container">
-        <div className="mx-auto mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
-          <h1 className="mb-5 text-6xl font-bold text-darkviridiangreen md:mb-6 md:text-9xl lg:text-10xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-12 max-w-2xl text-center md:mb-18 lg:mb-20"
+        >
+          <h1 className="mb-5 text-5xl font-bold text-black md:text-6xl lg:text-7xl">
             {heading}
           </h1>
-          <p className="md:text-md text-gray-600">{description}</p>
-          <ul className="mt-5 flex flex-wrap justify-center gap-2 md:mt-6">
+          <p className="mb-6 text-lg text-black/70 md:text-xl">{description}</p>
+          <ul className="flex flex-wrap justify-center gap-2">
             {tags.map((tag, index) => (
-              <li key={index} className="flex">
+              <motion.li 
+                key={index} 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="flex"
+              >
                 <a
                   href={tag.url}
-                  className="bg-merino px-2 py-1 text-sm font-semibold text-darkviridiangreen hover:bg-tahitigold hover:text-white transition-colors duration-200"
+                  className="rounded-full bg-gray px-4 py-2 text-sm font-semibold text-black hover:bg-chaugreen hover:text-white transition-colors duration-200"
                 >
                   {tag.label}
                 </a>
-              </li>
+              </motion.li>
             ))}
           </ul>
-        </div>
-        <div>
-          <img 
-            src={image.src} 
-            alt={image.alt} 
-            className="w-full rounded-lg shadow-xl"
-          />
-        </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="aspect-[21/9] w-full overflow-hidden rounded-lg">
+            <img 
+              src={image.src} 
+              alt={image.alt} 
+              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/30 to-transparent" />
+        </motion.div>
       </div>
     </section>
   );

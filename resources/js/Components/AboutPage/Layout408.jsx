@@ -24,11 +24,11 @@ const FeatureSectionContent = ({ isEven, ...featureSection }) => (
         isEven ? "md:order-first" : "md:order-last"
       )}
     >
-      <p className="mb-2 font-semibold text-tahitigold">{featureSection.tagline}</p>
-      <h2 className="mb-5 text-4xl font-bold leading-[1.2] text-darkerviridiangreen md:mb-6 md:text-5xl lg:text-6xl">
+      <p className="mb-2 font-semibold text-chaugreen">{featureSection.tagline}</p>
+      <h2 className="mb-5 text-4xl font-bold leading-[1.2] text-black md:mb-6 md:text-5xl lg:text-6xl">
         {featureSection.heading}
       </h2>
-      <p className="text-darkviridiangreen">{featureSection.description}</p>
+      <p className="text-black">{featureSection.description}</p>
       <div className="mt-6 flex items-center gap-x-4 md:mt-8">
         {featureSection.buttons.map((button, index) => (
           <button
@@ -36,8 +36,8 @@ const FeatureSectionContent = ({ isEven, ...featureSection }) => (
             onClick={button.onClick}
             className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
               index === 0
-                ? 'bg-tahitigold text-white hover:bg-midtahitigold'
-                : 'text-tahitigold hover:text-midtahitigold flex items-center gap-1'
+                ? 'bg-chaugreen text-white hover:bg-black'
+                : 'text-chaugreen hover:text-black flex items-center gap-1'
             }`}
           >
             {button.title}
@@ -68,12 +68,12 @@ const FeatureSection = ({ scale, index, ...featureSection }) => {
   return (
     <React.Fragment>
       {isMobile ? (
-        <div className="static grid grid-cols-1 content-center overflow-hidden border border-viridiangreen/20 bg-white">
+        <div className="static grid grid-cols-1 content-center overflow-hidden border border-chaugreen/20 bg-white">
           <FeatureSectionContent isEven={isEven} {...featureSection} />
         </div>
       ) : (
         <motion.div
-          className="static grid grid-cols-1 content-center overflow-hidden border border-viridiangreen/20 bg-white md:sticky md:top-[10%] md:mb-[10vh] md:h-[80vh] md:grid-cols-2"
+          className="static grid grid-cols-1 content-center overflow-hidden border border-chaugreen/20 bg-white md:sticky md:top-[10%] md:mb-[10vh] md:h-[80vh] md:grid-cols-2"
           style={{ scale }}
         >
           <FeatureSectionContent isEven={isEven} {...featureSection} />
@@ -99,12 +99,12 @@ export const Layout408 = (props) => {
   const scales = calculateScales(featureSections.length, scrollYProgress);
 
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-gradient-to-b from-pearlbush to-merino">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-gradient-to-b from-gray to-gray">
       <div className="container mx-auto">
         <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20">
-          <p className="mb-3 font-semibold text-tahitigold md:mb-4">{tagline}</p>
-          <h1 className="mb-5 text-5xl font-bold text-darkerviridiangreen md:mb-6 md:text-7xl lg:text-8xl">{heading}</h1>
-          <p className="text-darkviridiangreen md:text-lg">{description}</p>
+          <p className="mb-3 font-semibold text-chaugreen md:mb-4">{tagline}</p>
+          <h1 className="mb-5 text-5xl font-bold text-black md:mb-6 md:text-7xl lg:text-8xl">{heading}</h1>
+          <p className="text-black md:text-lg">{description}</p>
         </div>
         <div ref={containerRef} className="sticky top-0 grid grid-cols-1 gap-6 md:gap-0">
           {featureSections.map((featureSection, index) => (

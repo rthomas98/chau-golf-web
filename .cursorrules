@@ -1,0 +1,108 @@
+# Project Overview
+This is a Laravel + React golf tournament management application that handles tournament organization, player registration, and course management.
+
+# Relume React Components
+- Install required packages: @relume_io/relume-ui and @relume_io/relume-tailwind
+- Configure Tailwind preset with Relume's preset in tailwind.config.js
+- Follow Relume's component naming conventions and structure
+- Use Relume's predefined layout patterns (Grid, Bento, Off-grid)
+- Implement Relume's interaction patterns for components
+- Utilize Relume's default component configurations
+- Follow Relume's responsive design patterns
+- Use Relume's predefined color system and typography
+
+# Backend Admin Panel (Filament)
+- Use Filament v3.2+ for admin panel functionality
+- Follow Filament's panel builder architecture
+- Implement FilamentUser contract for production access control
+- Use production-ready storage disk (e.g., S3) instead of public disk
+- Run filament:optimize in production deployments
+- Maintain proper component caching for performance
+- Implement proper user authorization in canAccessPanel method
+- Use Filament's form, table, and infolist builders for CRUD operations
+- Follow Filament's resource structure for model management
+
+# Code Style
+- Follow Laravel and React best practices
+- Use TypeScript-style PropTypes for React components
+- Use consistent naming conventions (camelCase for variables/functions, PascalCase for components)
+- Maintain consistent component structure with defaults exported separately
+- Use Tailwind CSS for styling with custom color palette defined in tailwind.config.js
+- Follow Filament's component conventions for admin panel
+- Follow Relume's component structure and naming conventions
+
+# Component Structure
+- Keep components modular and reusable
+- Separate business logic from presentation
+- Use motion.div for animations with Framer Motion
+- Follow atomic design principles (atoms, molecules, organisms)
+- Export default component configurations separately (e.g., ComponentNameDefaults)
+- Use Relume's layout patterns for component organization
+- Implement Relume's interaction patterns
+- Follow Relume's component composition guidelines
+
+# State Management
+- Use React hooks for local state
+- Leverage Inertia.js for Laravel-React communication
+- Implement proper prop drilling prevention
+- Handle loading and error states appropriately
+
+# File Organization
+- Group related components in feature-specific folders
+- Keep shared/common components in separate directories
+- Maintain consistent file naming conventions
+- Use index files for cleaner imports
+- Follow Relume's component organization structure
+- Maintain Relume's component hierarchy
+- Use Relume's recommended file naming patterns
+
+# Performance
+- Implement proper code splitting
+- Use lazy loading for images and components
+- Optimize bundle size
+- Follow React performance best practices
+- Enable OPcache in production
+- Run php artisan filament:optimize for production
+- Cache Filament components in production
+- Cache Blade icons for better performance
+- Optimize Laravel with php artisan optimize
+- Optimize Relume component imports
+- Use Relume's lazy loading patterns
+- Follow Relume's performance best practices
+- Implement proper code splitting for Relume components
+
+# Documentation
+- Include JSDoc comments for component props
+- Document complex business logic
+- Add README files for major features
+- Keep inline comments clear and meaningful
+
+# Testing
+- Write unit tests for critical components
+- Test edge cases and error handling
+- Maintain good test coverage
+- Use proper testing utilities
+
+# Security
+- Validate user input
+- Implement proper authentication
+- Implement FilamentUser interface for admin access control
+- Use production-ready storage disk for file uploads
+- Configure proper file visibility settings
+- Follow Laravel security best practices
+- Handle sensitive data appropriately
+
+# Accessibility
+- Follow WCAG guidelines
+- Include proper ARIA labels
+- Ensure keyboard navigation
+- Maintain proper color contrast
+
+# Deployment
+- please make sure everything is production ready
+- Run filament:upgrade after composer updates
+- Clear Laravel caches after updates
+- Republish frontend assets after updates
+- Configure proper storage disk in FILAMENT_FILESYSTEM_DISK
+- Implement proper user authorization for panel access
+- Enable component caching in production

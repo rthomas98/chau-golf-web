@@ -66,7 +66,7 @@ export const Features = (props) => {
           >
             <div className="w-full max-w-lg">
               <p className="mb-3 font-semibold text-tahitigold md:mb-4">{tagline}</p>
-              <h2 className="mb-5 text-5xl font-bold text-viridiangreen md:mb-6 md:text-7xl lg:text-8xl">
+              <h2 className="mb-5 text-5xl font-bold text-black md:mb-6 md:text-7xl lg:text-8xl">
                 {heading}
               </h2>
               <p className="text-darkviridiangreen md:text-lg">{description}</p>
@@ -88,7 +88,7 @@ export const Features = (props) => {
                 <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-lg bg-white p-3 shadow-lg ring-1 ring-viridiangreen/10 md:mb-6">
                   {renderIcon(section.iconName)}
                 </div>
-                <h3 className="mb-5 text-2xl font-bold text-viridiangreen md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
+                <h3 className="mb-5 text-2xl font-bold text-tahitigold md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
                   {section.heading}
                 </h3>
                 <p className="text-darkviridiangreen">{section.description}</p>

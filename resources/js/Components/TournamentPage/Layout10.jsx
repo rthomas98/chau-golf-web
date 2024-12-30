@@ -1,17 +1,82 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 
-const Layout10 = ({ sponsors }) => {
+const defaultSponsors = {
+  tiers: [
+    {
+      name: "Platinum Sponsors",
+      sponsors: [
+        {
+          name: "GolfTech Pro",
+          logo: "https://ui-avatars.com/api/?name=GolfTech+Pro&background=059669&color=fff&size=128",
+          contribution: "Official Technology Partner"
+        },
+        {
+          name: "Elite Sports",
+          logo: "https://ui-avatars.com/api/?name=Elite+Sports&background=059669&color=fff&size=128",
+          contribution: "Equipment Sponsor"
+        },
+        {
+          name: "Premier Golf",
+          logo: "https://ui-avatars.com/api/?name=Premier+Golf&background=059669&color=fff&size=128",
+          contribution: "Tournament Partner"
+        }
+      ]
+    },
+    {
+      name: "Gold Sponsors",
+      sponsors: [
+        {
+          name: "Pro Shop Direct",
+          logo: "https://ui-avatars.com/api/?name=Pro+Shop&background=059669&color=fff&size=128",
+          contribution: "Retail Partner"
+        },
+        {
+          name: "Golf Gear Co",
+          logo: "https://ui-avatars.com/api/?name=Golf+Gear&background=059669&color=fff&size=128",
+          contribution: "Equipment Provider"
+        },
+        {
+          name: "Golf Plus",
+          logo: "https://ui-avatars.com/api/?name=Golf+Plus&background=059669&color=fff&size=128",
+          contribution: "Training Equipment"
+        }
+      ]
+    },
+    {
+      name: "Silver Sponsors",
+      sponsors: [
+        {
+          name: "Local Links",
+          logo: "https://ui-avatars.com/api/?name=Local+Links&background=059669&color=fff&size=128",
+          contribution: "Community Partner"
+        },
+        {
+          name: "Golf Academy",
+          logo: "https://ui-avatars.com/api/?name=Golf+Academy&background=059669&color=fff&size=128",
+          contribution: "Training Partner"
+        }
+      ]
+    }
+  ],
+  becomeASponsor: {
+    description: "Join our growing family of sponsors and help shape the future of golf tournaments.",
+    contactLink: "/contact"
+  }
+};
+
+const Layout10 = ({ sponsors = defaultSponsors }) => {
   return (
-    <div className="bg-merino py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+    <section className="bg-white py-16 sm:py-24">
+      <div className="container mx-auto px-[5%]">
+        <div className="mx-auto max-w-2xl text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl font-bold tracking-tight text-darkviridiangreen sm:text-4xl"
+            className="text-4xl font-bold tracking-tight text-black md:text-5xl lg:text-6xl"
           >
             Our Sponsors
           </motion.h2>
@@ -19,7 +84,7 @@ const Layout10 = ({ sponsors }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg leading-8 text-gray-600"
+            className="mt-6 text-lg leading-8 text-black/70"
           >
             We're proud to partner with these amazing organizations to bring you an exceptional tournament experience.
           </motion.p>
@@ -29,39 +94,49 @@ const Layout10 = ({ sponsors }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-16 max-w-7xl px-6 lg:px-8"
+          className="mx-auto mt-16"
         >
-          <div className="grid grid-cols-1 items-top gap-x-8 gap-y-10 lg:grid-cols-3">
+          <div className="grid grid-cols-1 items-start gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-2">
             {sponsors.tiers.map((tier, tierIndex) => (
-              <div key={tierIndex} className="space-y-8">
+              <motion.div
+                key={tierIndex}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: tierIndex * 0.1 }}
+                className="rounded-lg border border-chaugreen/20 bg-white p-8 shadow-sm"
+              >
                 <div className="text-center">
-                  <h3 className="text-lg font-semibold leading-8 text-darkviridiangreen">
+                  <h3 className="text-xl font-semibold leading-8 text-black">
                     {tier.name}
                   </h3>
                 </div>
-                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-2">
+                <div className="mt-8 grid grid-cols-2 gap-6">
                   {tier.sponsors.map((sponsor, sponsorIndex) => (
                     <motion.div
                       key={sponsorIndex}
                       initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
                       transition={{
                         duration: 0.4,
                         delay: 0.1 * sponsorIndex,
                       }}
-                      className="flex flex-col items-center gap-y-4"
+                      className="group flex flex-col items-center gap-y-4"
                     >
-                      <img
-                        className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                      />
+                      <div className="relative overflow-hidden rounded-lg">
+                        <img
+                          className="h-20 w-auto object-contain transition-all duration-300 group-hover:scale-110"
+                          src={sponsor.logo}
+                          alt={sponsor.name}
+                        />
+                      </div>
                       <div className="text-center">
-                        <h4 className="text-sm font-semibold text-darkviridiangreen">
+                        <h4 className="text-sm font-semibold text-black">
                           {sponsor.name}
                         </h4>
                         {sponsor.contribution && (
-                          <p className="mt-1 text-xs text-gray-600">
+                          <p className="mt-1 text-xs text-black/70">
                             {sponsor.contribution}
                           </p>
                         )}
@@ -69,47 +144,36 @@ const Layout10 = ({ sponsors }) => {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {sponsors.becomeASponsor && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-16 text-center"
+              className="mt-16 rounded-lg bg-gray p-8 text-center"
             >
-              <h3 className="text-lg font-semibold text-darkviridiangreen">
+              <h3 className="text-2xl font-semibold text-black">
                 Interested in Becoming a Sponsor?
               </h3>
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="mt-4 text-black/70">
                 {sponsors.becomeASponsor.description}
               </p>
               <a
                 href={sponsors.becomeASponsor.contactLink}
-                className="mt-6 inline-flex items-center rounded-md bg-tahitigold px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tahitigold"
+                className="mt-6 inline-flex items-center rounded-lg bg-chaugreen px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-black"
               >
                 Contact Us About Sponsorship
-                <svg
-                  className="ml-2 -mr-0.5 h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                  />
-                </svg>
+                <ChevronRight className="ml-2 h-4 w-4" />
               </a>
             </motion.div>
           )}
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -131,7 +195,7 @@ Layout10.propTypes = {
       description: PropTypes.string.isRequired,
       contactLink: PropTypes.string.isRequired,
     }),
-  }).isRequired,
+  }),
 };
 
 export default Layout10;

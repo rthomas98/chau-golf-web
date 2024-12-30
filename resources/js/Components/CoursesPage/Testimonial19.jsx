@@ -66,13 +66,13 @@ export const Testimonial19 = (props) => {
           <div className="mt-8 flex justify-center gap-4">
             <button
               onClick={prevTestimonial}
-              className="rounded-full bg-viridiangreen p-2 text-white hover:bg-darkviridiangreen"
+              className="rounded-full bg-chaugreen p-2 text-white hover:bg-black"
             >
               ←
             </button>
             <button
               onClick={nextTestimonial}
-              className="rounded-full bg-viridiangreen p-2 text-white hover:bg-darkviridiangreen"
+              className="rounded-full bg-chaugreen p-2 text-white hover:bg-black"
             >
               →
             </button>

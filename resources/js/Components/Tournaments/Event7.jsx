@@ -25,25 +25,25 @@ const FeaturedEvent = ({
           className="absolute size-full object-cover transform group-hover:scale-105 transition-transform duration-500" 
         />
         <div className="absolute right-4 top-4 flex min-w-28 flex-col items-center rounded-lg bg-white/95 backdrop-blur-sm px-1 py-3 text-sm">
-          <span className="text-tahitigold">{date.weekday}</span>
-          <span className="text-2xl font-bold text-darkerviridiangreen md:text-3xl lg:text-4xl">{date.day}</span>
-          <span className="text-darkviridiangreen">{date.monthYear}</span>
+          <span className="text-chaugreen">{date.weekday}</span>
+          <span className="text-2xl font-bold text-black md:text-3xl lg:text-4xl">{date.day}</span>
+          <span className="text-black">{date.monthYear}</span>
         </div>
       </Link>
-      <span className="mb-3 bg-tahitigold/10 text-tahitigold px-2 py-1 text-sm font-semibold rounded-md md:mb-4">
+      <span className="mb-3 bg-chaugreen/10 text-chaugreen px-2 py-1 text-sm font-semibold rounded-md md:mb-4">
         {category}
       </span>
       <Link 
         href={`/tournaments/${id}`} 
         className="group"
       >
-        <h2 className="text-xl font-bold text-darkerviridiangreen hover:text-tahitigold transition-colors md:text-2xl">{title}</h2>
+        <h2 className="text-xl font-bold text-black hover:text-chaugreen transition-colors md:text-2xl">{title}</h2>
       </Link>
-      <p className="mb-2 text-viridiangreen">{location}</p>
-      <p className="text-darkviridiangreen">{description}</p>
+      <p className="mb-2 text-chaugreen">{location}</p>
+      <p className="text-black">{description}</p>
       <Link
         href={`/tournaments/${id}`}
-        className="mt-5 flex items-center gap-1 text-tahitigold hover:text-midtahitigold transition-colors md:mt-6"
+        className="mt-5 flex items-center gap-1 text-chaugreen hover:text-black transition-colors md:mt-6"
       >
         {button.title}
         <ChevronRight className="h-4 w-4" />
@@ -62,13 +62,13 @@ export const Event7 = (props) => {
     <section className="bg-white px-4 py-16 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <span className="mb-4 inline-block text-sm font-semibold text-tahitigold">
+          <span className="mb-4 inline-block text-sm font-semibold text-chaugreen">
             {tagline}
           </span>
-          <h2 className="mb-4 text-3xl font-bold text-darkerviridiangreen md:text-5xl">
+          <h2 className="mb-4 text-3xl font-bold text-black md:text-5xl">
             {heading}
           </h2>
-          <p className="text-darkviridiangreen">{description}</p>
+          <p className="text-black">{description}</p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {featuredEvents.map((event, index) => (

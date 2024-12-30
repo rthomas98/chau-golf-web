@@ -10,6 +10,6 @@
     }
     
     body {
-        @apply font-sans text-mirage;
+        @apply font-sans text-black;
     }
 }

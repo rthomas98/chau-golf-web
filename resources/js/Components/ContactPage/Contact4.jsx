@@ -190,12 +190,14 @@ export const Contact4 = (props) => {
             </label>
           </div>
 
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-tahitigold px-6 py-3 font-semibold text-white transition-colors hover:bg-midtahitigold"
-          >
-            Send Message
-          </button>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="rounded-lg bg-chaugreen px-6 py-3 font-semibold text-white transition-colors hover:bg-black"
+            >
+              Send Message
+            </button>
+          </div>
         </form>
       </div>
     </section>
