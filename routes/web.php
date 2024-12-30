@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MembershipApplicationController;
+use App\Http\Controllers\TournamentController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -19,8 +20,12 @@ Route::get('/about', function () {
     return Inertia::render('About');
 });
 
-Route::get('/tournaments', function () {
-    return Inertia::render('Tournaments');
+Route::get('/tournaments', [TournamentController::class, 'index'])->name('tournaments.index');
+Route::get('/tournaments/{tournament}', [TournamentController::class, 'show'])->name('tournaments.show');
+Route::post('/tournaments/{tournament}/register-guest', [TournamentController::class, 'registerGuest'])->name('tournament.register.guest');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/tournaments/{tournament}/register', [TournamentController::class, 'register'])->name('tournament.register');
 });
 
 Route::get('/membership', function () {
@@ -45,10 +50,6 @@ Route::get('/store', function () {
 
 Route::get('/store/product/{id}', function ($id) {
     return Inertia::render('ProductDetail', ['productId' => $id]);
-});
-
-Route::get('/tournaments/{id}', function ($id) {
-    return Inertia::render('TournamentDetail', ['tournamentId' => $id]);
 });
 
 // Member Dashboard
