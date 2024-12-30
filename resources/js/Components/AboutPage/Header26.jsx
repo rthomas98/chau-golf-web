@@ -13,7 +13,7 @@ export const Header26 = (props) => {
           <div className="mb-12 text-center md:mb-18 lg:mb-20">
             <div className="mx-auto w-full max-w-2xl">
               <h1 className="mb-5 font-headers text-6xl font-bold text-darkerviridiangreen md:mb-6 md:text-8xl lg:text-9xl">
-                <span className="text-tahitigold">{heading.split(' ')[0]}</span>{' '}
+                <span className="text-chaugreen">{heading.split(' ')[0]}</span>{' '}
                 {heading.split(' ').slice(1).join(' ')}
               </h1>
               <p className="text-darkviridiangreen md:text-lg">{description}</p>
@@ -24,8 +24,8 @@ export const Header26 = (props) => {
                     onClick={button.onClick}
                     className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
                       index === 0
-                        ? 'bg-tahitigold text-white hover:bg-midtahitigold'
-                        : 'border border-tahitigold text-tahitigold hover:bg-lowtahitigold'
+                        ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
+                        : 'border border-chaugreen text-chaugreen hover:bg-chaugreen/10'
                     }`}
                   >
                     {button.title}

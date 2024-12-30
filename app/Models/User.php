@@ -11,6 +11,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Membership;
+use App\Models\PlayDateGuest;
+use App\Models\PlayDate;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -74,5 +76,22 @@ class User extends Authenticatable implements FilamentUser
     public function membership(): HasOne
     {
         return $this->hasOne(Membership::class);
+    }
+
+    public function playDateGuests()
+    {
+        return $this->hasMany(PlayDateGuest::class);
+    }
+
+    public function registeredPlayDates()
+    {
+        return $this->hasManyThrough(
+            PlayDate::class,
+            PlayDateGuest::class,
+            'user_id',
+            'id',
+            'id',
+            'play_date_id'
+        );
     }
 }

@@ -34,8 +34,8 @@ export const Layout222 = (props) => {
                 return (
                   <div key={index} className="group">
                     <div className="mb-3 md:mb-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-lowtahitigold">
-                        <IconComponent className="h-6 w-6 text-tahitigold" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-chaugreen/10">
+                        <IconComponent className="h-6 w-6 text-chaugreen" />
                       </div>
                     </div>
                     <h3 className="mb-3 text-xl font-bold text-darkerviridiangreen md:mb-4 md:text-2xl">
@@ -47,7 +47,7 @@ export const Layout222 = (props) => {
                         <button
                           key={index}
                           onClick={button.onClick}
-                          className="flex items-center gap-2 text-tahitigold transition-colors group-hover:text-midtahitigold"
+                          className="flex items-center gap-2 text-chaugreen transition-colors group-hover:text-chaugreen/80"
                         >
                           {button.title}
                           <ChevronRight className="h-4 w-4" />

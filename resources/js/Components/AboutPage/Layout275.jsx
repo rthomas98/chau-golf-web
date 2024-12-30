@@ -18,7 +18,7 @@ export const Layout275 = (props) => {
     <section className="relative px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container mx-auto">
         <div className="mb-12 max-w-lg text-start text-white md:mb-18 lg:mb-20">
-          <p className="mb-3 font-semibold text-tahitigold md:mb-4">{tagline}</p>
+          <p className="mb-3 font-semibold text-chaugreen md:mb-4">{tagline}</p>
           <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">{heading}</h2>
           <p className="md:text-lg">{description}</p>
         </div>
@@ -27,8 +27,8 @@ export const Layout275 = (props) => {
             const IconComponent = SECTION_ICONS[section.icon];
             return (
               <div key={index} className="flex w-full gap-6">
-                <div className="mb-5 flex size-12 flex-none items-center justify-center rounded-lg bg-tahitigold/20 self-start md:mb-6">
-                  <IconComponent className="h-6 w-6 text-tahitigold" />
+                <div className="mb-5 flex size-12 flex-none items-center justify-center rounded-lg bg-chaugreen/20 self-start md:mb-6">
+                  <IconComponent className="h-6 w-6 text-chaugreen" />
                 </div>
                 <div>
                   <h3 className="mb-5 text-2xl font-bold text-white md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
@@ -47,8 +47,8 @@ export const Layout275 = (props) => {
               onClick={button.onClick}
               className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
                 index === 0
-                  ? 'bg-tahitigold text-white hover:bg-midtahitigold'
-                  : 'text-white hover:text-tahitigold'
+                  ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
+                  : 'text-white hover:text-chaugreen'
               }`}
             >
               {button.title}

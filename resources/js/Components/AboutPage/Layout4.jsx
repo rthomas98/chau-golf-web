@@ -12,7 +12,7 @@ export const Layout4 = (props) => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>
-            <p className="mb-3 font-semibold text-tahitigold md:mb-4">{tagline}</p>
+            <p className="mb-3 font-semibold text-chaugreen md:mb-4">{tagline}</p>
             <h1 className="mb-5 text-5xl font-bold text-darkerviridiangreen md:mb-6 md:text-7xl lg:text-8xl">
               {heading}
             </h1>
@@ -34,8 +34,8 @@ export const Layout4 = (props) => {
                   onClick={button.onClick}
                   className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
                     index === 0
-                      ? 'bg-tahitigold text-white hover:bg-midtahitigold'
-                      : 'text-tahitigold hover:text-midtahitigold flex items-center gap-1'
+                      ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
+                      : 'text-chaugreen hover:text-chaugreen/80 flex items-center gap-1'
                   }`}
                 >
                   {button.title}

@@ -23,7 +23,7 @@ export const Layout360 = (props) => {
           {sections.map((section, index) => (
             <div key={index} className="overflow-hidden rounded-xl border border-viridiangreen/20 bg-white shadow-lg transition-transform hover:scale-[1.02]">
               <div className="p-6 md:p-8 lg:p-12">
-                <p className="mb-2 text-sm font-semibold text-tahitigold">{section.tagline}</p>
+                <p className="mb-2 text-sm font-semibold text-chaugreen">{section.tagline}</p>
                 <h3 className="mb-5 text-4xl font-bold leading-[1.2] text-darkerviridiangreen md:mb-6 md:text-5xl lg:text-6xl">
                   {section.heading}
                 </h3>

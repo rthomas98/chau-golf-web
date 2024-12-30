@@ -24,7 +24,7 @@ export const Cta7 = (props) => {
               onClick={button.onClick}
               className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
                 index === 0
-                  ? 'bg-tahitigold text-white hover:bg-midtahitigold'
+                  ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
                   : 'bg-white text-viridiangreen hover:bg-pearlbush'
               }`}
             >

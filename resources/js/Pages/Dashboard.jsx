@@ -1,52 +1,91 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link } from '@inertiajs/react';
+import React from 'react';
+import { Head } from '@inertiajs/react';
+import DashboardLayout from '@/Layouts/DashboardLayout';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
+import { Button } from '@/Components/ui/button';
+import { Trophy, Calendar, User } from 'lucide-react';
 
-export default function Dashboard({ auth, hasMembership }) {
-    return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
-        >
-            <Head title="Dashboard" />
+const Dashboard = ({ auth, hasMembership }) => {
+  return (
+    <DashboardLayout>
+      <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    {!hasMembership && (
-                        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
-                            <div className="p-6 text-center">
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                                    Welcome to ChauChau Golf!
-                                </h3>
-                                <p className="text-gray-600 mb-6">
-                                    To access all member benefits and participate in tournaments, 
-                                    please complete your membership application.
-                                </p>
-                                <Link
-                                    href={route('membership.apply')}
-                                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-chaugreen hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-chaugreen transition-opacity duration-200"
-                                >
-                                    Apply for Membership
-                                </Link>
-                            </div>
-                        </div>
-                    )}
+      <div className="space-y-8">
+        {/* Welcome Section */}
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Welcome back, {auth.user.name}!</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            Here's what's happening with your golf activities.
+          </p>
+        </div>
 
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            {hasMembership ? (
-                                <div>
-                                    <h3 className="text-xl font-semibold mb-4">Your Golf Dashboard</h3>
-                                    {/* Add member-specific content here */}
-                                </div>
-                            ) : (
-                                <div className="text-center text-gray-600">
-                                    Complete your membership application to view your golf dashboard.
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </AuthenticatedLayout>
-    );
-}
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="h-5 w-5" />
+                Play Dates
+              </CardTitle>
+              <CardDescription>Browse and register for upcoming play dates</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="default" asChild>
+                <a href={route('play-dates.index')}>View Play Dates</a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Trophy className="h-5 w-5" />
+                Tournaments
+              </CardTitle>
+              <CardDescription>Find and join upcoming tournaments</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="default" asChild>
+                <a href={route('tournaments.index')}>View Tournaments</a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <User className="h-5 w-5" />
+                My Profile
+              </CardTitle>
+              <CardDescription>Update your profile and preferences</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="default" asChild>
+                <a href={route('profile.edit')}>Edit Profile</a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Membership Status */}
+        {!hasMembership && (
+          <Card className="bg-yellow-50">
+            <CardHeader>
+              <CardTitle>Complete Your Membership</CardTitle>
+              <CardDescription>
+                Become a member to unlock exclusive benefits and features
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="default" asChild>
+                <a href={route('membership.apply')}>Apply for Membership</a>
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default Dashboard;

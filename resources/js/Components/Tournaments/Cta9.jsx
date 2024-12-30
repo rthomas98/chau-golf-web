@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Button = ({ variant = "primary", children, ...props }) => {
   const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors";
   const variants = {
-    primary: "bg-tahitigold text-white hover:bg-midtahitigold",
+    primary: "bg-chaugreen text-white hover:bg-chaugreen/80",
     "secondary-alt": "bg-white/10 text-white hover:bg-white/20",
     outline: "border-2 border-white text-white hover:bg-white/10"
   };

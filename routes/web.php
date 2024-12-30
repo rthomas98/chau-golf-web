@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MembershipApplicationController;
 use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\PlayDateController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -73,6 +75,24 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/membership/apply', [MembershipApplicationController::class, 'create'])->name('membership.apply');
     Route::post('/membership', [MembershipApplicationController::class, 'store'])->name('membership.store');
+});
+
+// Play Dates
+Route::middleware(['auth'])->group(function () {
+    Route::get('/play-dates', [PlayDateController::class, 'index'])->name('play-dates.index');
+    Route::get('/play-dates/{playDate}', [PlayDateController::class, 'show'])->name('play-dates.show');
+    Route::post('/play-dates/{playDate}/register', [PlayDateController::class, 'register'])->name('play-dates.register');
+    Route::get('/play-dates/{playDate}/calendar/ical', [PlayDateController::class, 'exportIcal'])
+        ->name('play-dates.calendar.ical');
+    Route::get('/play-dates/{playDate}/calendar/google', [PlayDateController::class, 'googleCalendarUrl'])
+        ->name('play-dates.calendar.google');
+    Route::get('/play-dates/{playDate}/suggest-reschedule', [PlayDateController::class, 'suggestReschedule'])
+        ->name('play-dates.suggest-reschedule');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/registrations', [DashboardController::class, 'registrations'])->name('dashboard.registrations');
 });
 
 require __DIR__.'/auth.php';
