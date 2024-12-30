@@ -38,7 +38,7 @@ export const Features = (props) => {
 
   const renderIcon = (iconName) => {
     const iconProps = {
-      className: "size-8 text-tahitigold",
+      className: "size-5 text-white",
       strokeWidth: 1.5
     };
 
@@ -85,7 +85,7 @@ export const Features = (props) => {
                 className="flex w-full flex-col"
                 variants={itemVariants}
               >
-                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-lg bg-white p-3 shadow-lg ring-1 ring-viridiangreen/10 md:mb-6">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-chaugreen p-2.5 shadow-lg md:mb-6">
                   {renderIcon(section.iconName)}
                 </div>
                 <h3 className="mb-5 text-2xl font-bold text-tahitigold md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
@@ -107,10 +107,10 @@ export const Features = (props) => {
                 key={index}
                 className={`flex items-center gap-2 rounded-md px-6 py-3 font-medium transition-colors ${
                   button.variant === "secondary"
-                    ? "border-2 border-tahitigold text-tahitigold hover:bg-tahitigold hover:text-white"
+                    ? "border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white"
                     : button.variant === "link"
-                    ? "text-tahitigold hover:text-tahitigold/80"
-                    : "bg-tahitigold text-white hover:bg-tahitigold/90"
+                    ? "text-chaugreen hover:text-chaugreen/80"
+                    : "bg-chaugreen text-white hover:bg-black"
                 }`}
               >
                 {button.title}

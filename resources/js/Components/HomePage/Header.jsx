@@ -1,112 +1,119 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { motion, easeOut } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 
 export const Header = (props) => {
-  const { heading, description, buttons, firstImage, secondImage, thirdImage } = {
+  const { heading, description, buttons, images } = {
     ...HeaderDefaults,
     ...props,
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
-  };
+  const controls = useAnimationControls();
 
-  const imageVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20
-    },
-    visible: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+  useEffect(() => {
+    const startAnimation = async () => {
+      await controls.start({
+        x: "-100%",
+        transition: {
+          duration: 20,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop"
+        }
+      });
+    };
+    
+    startAnimation();
+  }, [controls]);
+
+  // Double the images array to create seamless loop
+  const duplicatedImages = [...images, ...images];
 
   return (
     <section id="hero" className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
-        <div className="rb-12 mb-12 grid grid-cols-1 items-start gap-5 md:mb-18 md:grid-cols-2 md:gap-12 lg:mb-20 lg:gap-20">
-          <h1 className="text-6xl font-bold text-black md:text-8xl lg:text-9xl">{heading}</h1>
-          <div className="mx-[7.5%] flex flex-col justify-end md:mt-48">
-            <p className="text-lg text-black/90 md:text-xl">{description}</p>
-            <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-              {buttons.map((button, index) => (
-                <button
-                  key={index}
-                  className={`rounded-md px-6 py-3 font-medium transition-colors ${
-                    button.variant === "secondary"
-                      ? "border-2 border-black text-black hover:bg-white hover:text-viridiangreen"
-                      : "bg-tahitigold text-white hover:bg-tahitigold/90"
-                  }`}
-                >
-                  {button.title}
-                </button>
-              ))}
-            </div>
-          </div>
+      <div className="container mx-auto">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              damping: 20
+            }}
+            className="text-6xl font-bold text-black md:text-8xl lg:text-9xl max-w-4xl mb-8"
+          >
+            {heading}
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              damping: 20,
+              delay: 0.2 
+            }}
+            className="text-lg text-black/90 md:text-xl max-w-2xl mb-8"
+          >
+            {description}
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              damping: 20,
+              delay: 0.4 
+            }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            {buttons.map((button, index) => (
+              <motion.button
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
+                  button.variant === "secondary"
+                    ? "border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white"
+                    : "bg-chaugreen text-white hover:bg-black"
+                }`}
+              >
+                {button.title}
+              </motion.button>
+            ))}
+          </motion.div>
         </div>
 
-        <motion.div 
-          className="grid grid-cols-[1fr_1.5fr_1fr] items-start gap-6 sm:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div className="mt-[70%] w-full" variants={imageVariants}>
-            <motion.img
-              className="aspect-square size-full rounded-lg object-cover shadow-lg ring-2 ring-white/10"
-              src={firstImage.src}
-              alt={firstImage.alt}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { 
-                  duration: 0.3,
-                  ease: "easeOut"
-                }
-              }}
-            />
+        <div className="relative max-w-6xl mx-auto overflow-hidden">
+          <motion.div 
+            className="flex gap-6"
+            animate={controls}
+          >
+            {duplicatedImages.map((image, index) => (
+              <motion.div
+                key={index}
+                className="relative min-w-[calc(33.333%-1rem)] aspect-[4/3]"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                  delay: index * 0.1 
+                }}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="absolute inset-0 h-full w-full object-cover rounded-xl shadow-lg"
+                />
+              </motion.div>
+            ))}
           </motion.div>
-          <motion.div className="w-full" variants={imageVariants}>
-            <motion.img
-              className="aspect-[2/3] size-full rounded-lg object-cover shadow-lg ring-2 ring-white/10"
-              src={secondImage.src}
-              alt={secondImage.alt}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { 
-                  duration: 0.3,
-                  ease: "easeOut"
-                }
-              }}
-            />
-          </motion.div>
-          <motion.div className="w-full" variants={imageVariants}>
-            <motion.img
-              className="aspect-[2/3] size-full rounded-lg object-cover shadow-lg ring-2 ring-white/10"
-              src={thirdImage.src}
-              alt={thirdImage.alt}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { 
-                  duration: 0.3,
-                  ease: "easeOut"
-                }
-              }}
-            />
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -121,18 +128,12 @@ Header.propTypes = {
       variant: PropTypes.oneOf(["primary", "secondary"])
     })
   ),
-  firstImage: PropTypes.shape({
-    src: PropTypes.string,
-    alt: PropTypes.string
-  }),
-  secondImage: PropTypes.shape({
-    src: PropTypes.string,
-    alt: PropTypes.string
-  }),
-  thirdImage: PropTypes.shape({
-    src: PropTypes.string,
-    alt: PropTypes.string
-  })
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string
+    })
+  )
 };
 
 export const HeaderDefaults = {
@@ -143,16 +144,30 @@ export const HeaderDefaults = {
     { title: "Join Now", variant: "primary" }, 
     { title: "Learn More", variant: "secondary" }
   ],
-  firstImage: {
-    src: "/images/golf-1.jpg",
-    alt: "Golfer teeing off at sunset",
-  },
-  secondImage: {
-    src: "/images/golf-2.jpg",
-    alt: "Beautiful golf course landscape",
-  },
-  thirdImage: {
-    src: "/images/golf-3.jpg",
-    alt: "Professional golf instruction",
-  },
+  images: [
+    {
+      src: "/images/golf-sunset.jpg",
+      alt: "Golfer at sunset on a beautiful course",
+    },
+    {
+      src: "/images/golf-course.jpg",
+      alt: "Scenic golf course view",
+    },
+    {
+      src: "/images/golf-player.jpg",
+      alt: "Professional golfer in action",
+    },
+    {
+      src: "/images/tournament.jpg",
+      alt: "Tournament action shot",
+    },
+    {
+      src: "/images/membership.jpg",
+      alt: "Golf club membership benefits",
+    },
+    {
+      src: "/images/golf-benefits.jpg",
+      alt: "Golf lifestyle benefits",
+    }
+  ]
 };

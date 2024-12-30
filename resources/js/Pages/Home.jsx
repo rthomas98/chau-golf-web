@@ -20,18 +20,32 @@ export default function Home() {
                     { title: "Become a Member", variant: "primary" },
                     { title: "Explore Courses", variant: "secondary" }
                 ]}
-                firstImage={{
-                    src: "/images/golf-sunset.jpg",
-                    alt: "Professional golfer practicing at sunset"
-                }}
-                secondImage={{
-                    src: "/images/golf-course.jpg",
-                    alt: "Beautiful golf course landscape"
-                }}
-                thirdImage={{
-                    src: "/images/golf-player.jpg",
-                    alt: "Golf player in action"
-                }}
+                images={[
+                    {
+                        src: "/images/golf-sunset.jpg",
+                        alt: "Professional golfer practicing at sunset"
+                    },
+                    {
+                        src: "/images/golf-course.jpg",
+                        alt: "Beautiful golf course landscape"
+                    },
+                    {
+                        src: "/images/golf-player.jpg",
+                        alt: "Golf player in action"
+                    },
+                    {
+                        src: "/images/tournament.jpg",
+                        alt: "Tournament action shot"
+                    },
+                    {
+                        src: "/images/membership.jpg",
+                        alt: "Golf club membership benefits"
+                    },
+                    {
+                        src: "/images/golf-benefits.jpg",
+                        alt: "Golf lifestyle benefits"
+                    }
+                ]}
             />
             <Features 
                 tagline="Why Choose ChauChau Golf"
@@ -55,8 +69,8 @@ export default function Home() {
                     }
                 ]}
                 buttons={[
-                    { title: "View All Benefits", variant: "secondary" },
-                    { title: "Learn More", variant: "link" }
+                    { title: "View All Benefits", variant: "primary" },
+                    { title: "Learn More", variant: "secondary" }
                 ]}
             />
             <Highlights 
@@ -70,7 +84,7 @@ export default function Home() {
                         description: "At Chau Chau Golf, we offer a unique platform for amateur players to showcase their skills in competitive tournaments. Join us for an unforgettable golfing experience that fosters community and sportsmanship.",
                         button: {
                             title: "View Upcoming Tournaments",
-                            variant: "link"
+                            variant: "primary"
                         }
                     },
                     {
@@ -82,7 +96,7 @@ export default function Home() {
                         description: "Our events are designed to bring together players of all skill levels, ensuring everyone has a chance to compete and connect. Discover upcoming tournaments and be part of a vibrant golfing community.",
                         button: {
                             title: "Explore Member Benefits",
-                            variant: "link"
+                            variant: "primary"
                         }
                     }
                 ]}
@@ -99,7 +113,8 @@ export default function Home() {
                         description: "Experience meticulously planned tournaments with professional scoring systems, live leaderboards, and expert course management.",
                         buttons: [
                             {
-                                title: "View Tournament Schedule"
+                                title: "View Tournament Schedule",
+                                variant: "primary"
                             }
                         ]
                     },
@@ -109,7 +124,8 @@ export default function Home() {
                         description: "Connect with fellow golf enthusiasts, share experiences, and participate in exclusive member-only events and networking opportunities.",
                         buttons: [
                             {
-                                title: "Join Our Community"
+                                title: "Join Our Community",
+                                variant: "primary"
                             }
                         ]
                     },
@@ -119,13 +135,14 @@ export default function Home() {
                         description: "Access specialized training programs, workshops, and resources designed to help you improve your game and reach your golfing goals.",
                         buttons: [
                             {
-                                title: "Explore Programs"
+                                title: "Explore Programs",
+                                variant: "primary"
                             }
                         ]
                     }
                 ]}
             />
-             <VideoHero 
+            <VideoHero 
                 tagline="Experience Golf Like Never Before"
                 heading="Join a Community of Passionate Golfers"
                 description="At Chau Chau Golf, we bring together golf enthusiasts of all skill levels. Connect with fellow players, share experiences, and enhance your game through our vibrant community."
@@ -148,10 +165,12 @@ export default function Home() {
                 ]}
                 buttons={[
                     { 
-                        title: "Join Our Community"
+                        title: "Join Our Community",
+                        variant: "primary"
                     },
                     {
-                        title: "View Upcoming Events"
+                        title: "View Upcoming Events",
+                        variant: "secondary"
                     }
                 ]}
                 video="/videos/3514135261-preview.mp4"
@@ -162,7 +181,8 @@ export default function Home() {
                 heading="Stay Updated with Golf Insights"
                 description="Discover the latest trends, tips, and stories from the world of golf. Our expert contributors share valuable insights to help you improve your game."
                 button={{ 
-                    title: "View All Articles"
+                    title: "View All Articles",
+                    variant: "primary"
                 }}
                 blogPosts={[
                     {
@@ -176,7 +196,8 @@ export default function Home() {
                         title: "Essential Tournament Preparation Guide",
                         description: "Learn the key strategies and mental preparation techniques to help you perform your best in competitive golf tournaments.",
                         button: {
-                            title: "Read More"
+                            title: "Read More",
+                            variant: "secondary"
                         }
                     },
                     {
@@ -190,7 +211,8 @@ export default function Home() {
                         title: "Building Connections Through Golf",
                         description: "Discover how participating in golf events can help you build lasting relationships and expand your professional network.",
                         button: {
-                            title: "Read More"
+                            title: "Read More",
+                            variant: "secondary"
                         }
                     },
                     {
@@ -204,7 +226,8 @@ export default function Home() {
                         title: "Advanced Techniques for Better Scores",
                         description: "Expert tips and practice drills to help you improve your accuracy, consistency, and overall performance on the course.",
                         button: {
-                            title: "Read More"
+                            title: "Read More",
+                            variant: "secondary"
                         }
                     }
                 ]}
@@ -214,13 +237,14 @@ export default function Home() {
                 heading="Join Our Next Tournament"
                 description="Don't miss out on our exciting upcoming golf tournaments and events. Register now to secure your spot and compete with fellow enthusiasts."
                 button={{
-                    title: "View All Events"
+                    title: "View All Events",
+                    variant: "primary"
                 }}
                 featuredEvents={[
                     {
                         url: "#",
                         image: {
-                            src: "../images/event-1.jpg",
+                            src: "/images/event-1.jpg",
                             alt: "Spring Championship Tournament"
                         },
                         date: {
@@ -233,13 +257,14 @@ export default function Home() {
                         location: "Pine Valley Golf Club",
                         description: "Join us for our annual Spring Championship Tournament featuring players from all skill levels competing for exciting prizes.",
                         button: {
-                            title: "Register Now"
+                            title: "Register Now",
+                            variant: "primary"
                         }
                     },
                     {
                         url: "#",
                         image: {
-                            src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80&w=2070",
+                            src: "/images/event-2.jpg",
                             alt: "Networking Golf Day"
                         },
                         date: {
@@ -252,13 +277,14 @@ export default function Home() {
                         location: "Oakmont Country Club",
                         description: "Connect with professionals and business leaders while enjoying a relaxed round of golf and networking opportunities.",
                         button: {
-                            title: "Learn More"
+                            title: "Learn More",
+                            variant: "secondary"
                         }
                     },
                     {
                         url: "#",
                         image: {
-                            src: "https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?auto=format&fit=crop&q=80&w=2070",
+                            src: "/images/event-3.jpg",
                             alt: "Junior Golf Camp"
                         },
                         date: {
@@ -271,7 +297,8 @@ export default function Home() {
                         location: "Augusta National Golf Club",
                         description: "A week-long training camp for young golfers to develop their skills under the guidance of professional instructors.",
                         button: {
-                            title: "Register Interest"
+                            title: "Register Interest",
+                            variant: "primary"
                         }
                     }
                 ]}
@@ -280,11 +307,11 @@ export default function Home() {
                 heading="Welcome to Chau Chau Golf: Your Gateway to Exciting Golf Experiences"
                 description="At Chau Chau Golf, our mission is to connect passionate golf enthusiasts with exciting tournaments and events. Join us to enhance your skills, experience thrilling competitions, and enjoy the camaraderie of fellow players who share your love for the game."
                 image={{
-                    src: "https://images.unsplash.com/photo-1535132011086-b8818f016104?auto=format&fit=crop&q=80&w=2070",
+                    src: "/images/golf-course.jpg",
                     alt: "Beautiful golf course with stunning landscape"
                 }}
             />
-             <Cta3 
+            <Cta3 
                 heading="Join Our Golf Community"
                 description="Take your game to the next level with exclusive access to tournaments, training programs, and a community of passionate golfers."
                 buttons={[
@@ -294,11 +321,11 @@ export default function Home() {
                     },
                     {
                         title: "View Membership Plans",
-                        variant: "secondary-alt"
+                        variant: "secondary"
                     }
                 ]}
                 image={{
-                    src: "https://images.unsplash.com/photo-1611374243147-44a702c2d44c?auto=format&fit=crop&q=80&w=2070",
+                    src: "/images/golf-sunset.jpg",
                     alt: "Scenic golf course view"
                 }}
             />

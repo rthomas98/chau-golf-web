@@ -75,44 +75,48 @@ export const Blog = (props) => {
           {blogPosts.map((post, index) => (
             <motion.div
               key={index}
-              className="group flex size-full flex-col items-center justify-start overflow-hidden rounded-lg border border-midviridiangreen bg-white shadow-md transition-shadow hover:shadow-xl"
+              className="group flex size-full flex-col overflow-hidden rounded-lg border border-midviridiangreen bg-white shadow-md transition-shadow hover:shadow-xl"
               variants={itemVariants}
             >
-              <a href={post.url} className="relative w-full overflow-hidden">
+              <a href={post.url} className="block w-full overflow-hidden">
                 <motion.img
                   src={post.image.src}
                   alt={post.image.alt}
-                  className="aspect-[3/2] size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="aspect-[3/2] w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </a>
-              <div className="flex-1 px-5 py-6 md:p-6">
-                <div className="mb-4 flex w-full items-center justify-start">
-                  <p className="mr-4 rounded-full bg-lowtahitigold px-3 py-1 text-sm font-semibold text-tahitigold">
+              <div className="flex flex-1 flex-col p-6 md:p-8">
+                <div className="mb-6 flex w-full items-center justify-start gap-4">
+                  <span className="rounded-full bg-lowtahitigold px-4 py-1.5 text-sm font-semibold text-tahitigold">
                     {post.category}
-                  </p>
-                  <p className="inline text-sm font-semibold text-darkviridiangreen">
+                  </span>
+                  <span className="text-sm font-semibold text-darkviridiangreen">
                     {post.readTime}
-                  </p>
+                  </span>
                 </div>
-                <div className="flex w-full flex-col items-start justify-start">
-                  <a 
-                    className="mb-2 transition-colors hover:text-tahitigold" 
-                    href={post.url}
-                  >
-                    <h2 className="text-xl font-bold text-darkerviridiangreen md:text-2xl">
-                      {post.title}
-                    </h2>
-                  </a>
-                  <p className="text-darkviridiangreen">
-                    {post.description}
-                  </p>
-                  <button
-                    className="mt-6 flex items-center gap-2 text-tahitigold transition-colors hover:text-midtahitigold"
-                    onClick={post.button.onClick}
-                  >
-                    {post.button.title}
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
+                <div className="flex flex-1 flex-col justify-between">
+                  <div className="space-y-4">
+                    <a 
+                      className="block w-full transition-colors hover:text-tahitigold" 
+                      href={post.url}
+                    >
+                      <h2 className="truncate text-xl font-bold text-darkerviridiangreen md:text-2xl">
+                        {post.title}
+                      </h2>
+                    </a>
+                    <p className="line-clamp-3 text-base text-darkviridiangreen/70">
+                      {post.description}
+                    </p>
+                  </div>
+                  <div className="pt-6">
+                    <button
+                      className="flex items-center gap-2 text-chaugreen transition-colors hover:text-black"
+                      onClick={post.button.onClick}
+                    >
+                      {post.button.title}
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -121,7 +125,7 @@ export const Blog = (props) => {
 
         <div className="flex items-center justify-end">
           <button
-            className="mt-10 rounded-lg bg-tahitigold px-6 py-3 font-semibold text-white transition-colors hover:bg-midtahitigold md:mt-14 lg:mt-16"
+            className="mt-10 rounded-lg bg-chaugreen px-6 py-3 font-semibold text-white transition-colors hover:bg-black md:mt-14 lg:mt-16"
             onClick={button.onClick}
           >
             {button.title}

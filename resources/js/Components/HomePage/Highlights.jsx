@@ -64,7 +64,7 @@ export const Highlights = (props) => {
               <p className="text-darkviridiangreen">{section.description}</p>
               <div className="mt-6 flex gap-4 md:mt-8">
                 <button
-                  className="flex items-center gap-2 text-tahitigold transition-colors hover:text-midtahitigold"
+                  className="flex items-center gap-2 rounded-lg bg-chaugreen px-6 py-3 font-semibold text-white transition-colors hover:bg-black"
                   onClick={section.button.onClick}
                 >
                   {section.button.title}

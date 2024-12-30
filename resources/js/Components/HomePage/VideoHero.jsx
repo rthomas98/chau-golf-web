@@ -36,7 +36,7 @@ export const VideoHero = (props) => {
   };
 
   const renderIcon = (iconName) => {
-    const iconProps = { className: "h-12 w-12 text-white" };
+    const iconProps = { className: "h-5 w-5 text-white" };
     switch (iconName) {
       case "trophy":
         return <Trophy {...iconProps} />;
@@ -59,19 +59,19 @@ export const VideoHero = (props) => {
           animate="visible"
         >
           <motion.p 
-            className="mb-3 font-semibold text-tahitigold md:mb-4"
+            className="mb-3 font-semibold text-white md:mb-4"
             variants={itemVariants}
           >
             {tagline}
           </motion.p>
           <motion.h2 
-            className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl"
+            className="mb-5 text-5xl font-bold text-white md:mb-6 md:text-7xl lg:text-8xl"
             variants={itemVariants}
           >
             {heading}
           </motion.h2>
           <motion.p 
-            className="md:text-md text-highpearlbush"
+            className="md:text-md text-white"
             variants={itemVariants}
           >
             {description}
@@ -90,7 +90,7 @@ export const VideoHero = (props) => {
               className="w-full"
               variants={itemVariants}
             >
-              <div className="mb-5 inline-block rounded-lg bg-white/10 p-3 backdrop-blur-sm md:mb-6">
+              <div className="mb-5 inline-block rounded-lg bg-chaugreen p-2.5 shadow-lg md:mb-6">
                 {renderIcon(section.icon)}
               </div>
 
@@ -98,7 +98,7 @@ export const VideoHero = (props) => {
                 <h3 className="mb-5 text-2xl font-bold text-white md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
                   {section.heading}
                 </h3>
-                <p className="text-highpearlbush">
+                <p className="text-white">
                   {section.description}
                 </p>
               </div>
@@ -118,8 +118,8 @@ export const VideoHero = (props) => {
               variants={itemVariants}
               className={
                 index === 0
-                  ? "rounded-lg bg-tahitigold px-6 py-3 font-semibold text-white transition-colors hover:bg-midtahitigold"
-                  : "flex items-center gap-2 text-white transition-colors hover:text-highpearlbush"
+                  ? "rounded-lg bg-chaugreen px-6 py-3 font-semibold text-white transition-colors hover:bg-black"
+                  : "flex items-center gap-2 text-white transition-colors hover:text-white/80"
               }
               onClick={button.onClick}
             >

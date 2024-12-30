@@ -3,53 +3,60 @@ import PropTypes from "prop-types";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const FeaturedEvent = ({
-  url,
-  image,
-  date,
-  category,
-  title,
-  location,
-  description,
-  button,
-}) => {
+const FeaturedEvent = ({ event }) => {
   return (
-    <motion.div 
-      className="group flex flex-col items-start"
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
-    >
-      <a href={url} className="relative mb-5 block aspect-[3/2] w-full overflow-hidden rounded-lg md:mb-6">
-        <motion.img 
-          src={image.src} 
-          alt={image.alt} 
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
+    <div className="group flex size-full flex-col overflow-hidden rounded-lg border border-midviridiangreen bg-white shadow-md transition-shadow hover:shadow-xl">
+      <a href={event.url} className="relative w-full overflow-hidden">
+        <img
+          src={event.image.src}
+          alt={event.image.alt}
+          className="aspect-[3/2] w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="absolute right-4 top-4 flex min-w-28 flex-col items-center rounded-lg bg-white/95 px-1 py-3 text-sm backdrop-blur-sm">
-          <span className="text-darkviridiangreen">{date.weekday}</span>
-          <span className="text-2xl font-bold text-tahitigold md:text-3xl lg:text-4xl">{date.day}</span>
-          <span className="text-darkviridiangreen">{date.monthYear}</span>
+      </a>
+      <div className="flex flex-1 flex-col p-6 md:p-8">
+        <div className="mb-6 flex w-full items-center justify-between">
+          <div className="flex flex-col">
+            <p className="text-sm font-semibold text-darkviridiangreen">{event.date.weekday}</p>
+            <p className="text-3xl font-bold text-darkerviridiangreen">{event.date.day}</p>
+            <p className="text-sm font-semibold text-darkviridiangreen">{event.date.monthYear}</p>
+          </div>
+          <span className="rounded-full bg-lowtahitigold px-4 py-1.5 text-sm font-semibold text-tahitigold">
+            {event.category}
+          </span>
         </div>
-      </a>
-      <span className="mb-3 rounded-full bg-lowtahitigold px-3 py-1 text-sm font-semibold text-tahitigold md:mb-4">
-        {category}
-      </span>
-      <a 
-        href={url}
-        className="group-hover:text-tahitigold"
-      >
-        <h2 className="text-xl font-bold text-darkerviridiangreen transition-colors md:text-2xl">{title}</h2>
-      </a>
-      <p className="mb-2 text-darkviridiangreen">{location}</p>
-      <p className="text-darkviridiangreen">{description}</p>
-      <button
-        className="mt-5 flex items-center gap-2 text-tahitigold transition-colors hover:text-midtahitigold md:mt-6"
-        onClick={button.onClick}
-      >
-        {button.title}
-        <ChevronRight className="h-5 w-5" />
-      </button>
-    </motion.div>
+        <div className="flex flex-1 flex-col justify-between">
+          <div className="space-y-4">
+            <a 
+              className="block w-full transition-colors hover:text-tahitigold" 
+              href={event.url}
+            >
+              <h3 className="truncate text-xl font-bold text-darkerviridiangreen md:text-2xl">
+                {event.title}
+              </h3>
+            </a>
+            <p className="text-sm font-semibold text-darkviridiangreen">
+              {event.location}
+            </p>
+            <p className="line-clamp-3 text-base text-darkviridiangreen/70">
+              {event.description}
+            </p>
+          </div>
+          <div className="pt-6">
+            <button
+              className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
+                event.button.variant === "secondary"
+                  ? "border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white"
+                  : "bg-chaugreen text-white hover:bg-black"
+              }`}
+              onClick={event.button.onClick}
+            >
+              {event.button.title}
+              {event.button.variant === "secondary" && <ChevronRight className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -124,25 +131,20 @@ export const Events = (props) => {
         >
           {featuredEvents.map((event, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <FeaturedEvent {...event} />
+              <FeaturedEvent event={event} />
             </motion.div>
           ))}
         </motion.div>
 
-        <motion.div 
-          className="mt-12 flex justify-center md:mt-18 lg:mt-20"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.button
-            variants={itemVariants}
-            className="rounded-lg bg-tahitigold px-6 py-3 font-semibold text-white transition-colors hover:bg-midtahitigold"
-            onClick={button.onClick}
+        <div className="flex justify-center">
+          <button
+            className="mt-16 flex items-center gap-2 rounded-lg border-2 border-chaugreen px-6 py-3 font-semibold text-chaugreen transition-colors hover:bg-chaugreen hover:text-white"
+            onClick={() => {}}
           >
-            {button.title}
-          </motion.button>
-        </motion.div>
+            View All Events
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -210,7 +212,7 @@ export const EventsDefaults = {
     {
       url: "#",
       image: {
-        src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop",
+        src: "https://images.pexels.com/photos/914682/pexels-photo-914682.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         alt: "Networking Golf Day"
       },
       date: {

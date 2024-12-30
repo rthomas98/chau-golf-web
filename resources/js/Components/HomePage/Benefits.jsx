@@ -1,38 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ChevronRight, Trophy, Users, Target } from "lucide-react";
+import { Trophy, Users, Target } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Benefits = (props) => {
   const { image, featureSections } = { ...BenefitsDefaults, ...props };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { 
-      opacity: 0,
-      x: -20
-    },
-    visible: { 
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   const renderIcon = (iconName) => {
-    const iconProps = { className: "h-12 w-12 text-tahitigold" };
+    const iconProps = { className: "h-5 w-5 text-chaugreen" };
     switch (iconName) {
       case "trophy":
         return <Trophy {...iconProps} />;
@@ -46,68 +21,45 @@ export const Benefits = (props) => {
   };
 
   return (
-    <section className="bg-lowmerino px-[5%] py-16 md:py-24 lg:py-28">
+    <section className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
-          <motion.div 
-            className="order-2 md:order-1"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="overflow-hidden rounded-lg shadow-lg">
-              <motion.img 
-                src={image.src} 
-                className="w-full object-cover" 
-                alt={image.alt}
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-              />
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            className="order-1 md:order-2"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <div className="grid grid-cols-1 gap-x-6 gap-y-8 py-2">
-              {featureSections.map((section, index) => (
-                <motion.div 
-                  key={index} 
-                  className="flex self-start"
-                  variants={itemVariants}
-                >
-                  <div className="mr-6 flex-none self-start">
-                    <div className="rounded-lg bg-lowtahitigold p-3">
-                      {renderIcon(section.icon)}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="mb-3 text-xl font-bold text-darkerviridiangreen md:mb-4 md:text-2xl">
-                      {section.heading}
-                    </h3>
-                    <p className="text-darkviridiangreen">{section.description}</p>
-                    <div className="mt-5 flex items-center gap-x-4 md:mt-6">
-                      {section.buttons.map((button, index) => (
-                        <button
-                          key={index}
-                          className="flex items-center gap-2 text-tahitigold transition-colors hover:text-midtahitigold"
-                          onClick={button.onClick}
-                        >
-                          {button.title}
-                          <ChevronRight className="h-5 w-5" />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
+          <div className="aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
+            <img 
+              src={image.src} 
+              alt={image.alt} 
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div>
+            {featureSections.map((section, index) => (
+              <div key={index} className="mb-8 last:mb-0">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-gray p-2.5 shadow-lg md:mb-6">
+                  {renderIcon(section.icon)}
+                </div>
+                <h3 className="mb-3 text-2xl font-bold text-darkerviridiangreen md:mb-4 md:text-3xl">
+                  {section.heading}
+                </h3>
+                <p className="mb-4 text-darkviridiangreen md:mb-5">
+                  {section.description}
+                </p>
+                <div className="flex gap-4">
+                  {section.buttons.map((button, buttonIndex) => (
+                    <button
+                      key={buttonIndex}
+                      className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
+                        button.variant === "primary"
+                          ? "bg-chaugreen text-white hover:bg-black"
+                          : "border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white"
+                      }`}
+                    >
+                      {button.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
