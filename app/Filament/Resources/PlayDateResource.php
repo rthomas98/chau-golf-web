@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlayDateResource\Pages;
-use App\Filament\Resources\PlayDateResource\RelationManagers;
 use App\Models\PlayDate;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -12,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Pages\PageRegistration;
 
 class PlayDateResource extends Resource
 {
@@ -142,7 +142,6 @@ class PlayDateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\GuestsRelationManager::class,
         ];
     }
 

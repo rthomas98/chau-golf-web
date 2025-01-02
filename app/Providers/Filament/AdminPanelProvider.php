@@ -17,6 +17,13 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Resources\PartnerResource;
+use App\Filament\Resources\PartnerRevenueReportResource;
+use App\Filament\Resources\TournamentResource;
+use App\Filament\Resources\PlayDateResource;
+use App\Filament\Resources\UserResource;
+use App\Filament\Resources\MembershipResource;
+use App\Filament\Resources\GuestParticipantResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,12 +38,18 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->resources([
+                PartnerResource::class,
+                PartnerRevenueReportResource::class,
+                TournamentResource::class,
+                PlayDateResource::class,
+                UserResource::class,
+                MembershipResource::class,
+                GuestParticipantResource::class,
+            ])
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
             ])
@@ -58,6 +71,7 @@ class AdminPanelProvider extends PanelProvider
                 'Tournament Management',
                 'User Management',
                 'Content Management',
+                'Partner Management',
             ])
             ->maxContentWidth('full')
             ->sidebarCollapsibleOnDesktop();
