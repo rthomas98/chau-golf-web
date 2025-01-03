@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->darkmode(false)
             ->login()
             ->brandName('ChauGolf Admin')
             ->colors([

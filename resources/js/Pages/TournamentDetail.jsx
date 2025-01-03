@@ -89,7 +89,7 @@ const GuestRegistrationModal = ({ isOpen, onClose, tournament }) => {
                         <Button
                             type="submit"
                             variant="primary"
-                            className="w-full"
+                            className="w-full bg-chaugreen hover:bg-chaugreen/90 rounded-lg"
                             disabled={form.processing}
                         >
                             {form.processing ? 'Registering...' : 'Complete Registration'}
