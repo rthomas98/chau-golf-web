@@ -19,9 +19,9 @@ export const Header26 = (props) => {
               <p className="text-darkviridiangreen md:text-lg">{description}</p>
               <div className="mt-6 flex items-center justify-center gap-x-4 md:mt-8">
                 {buttons.map((button, index) => (
-                  <button
+                  <a
                     key={index}
-                    onClick={button.onClick}
+                    href={button.href}
                     className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
                       index === 0
                         ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
@@ -29,7 +29,7 @@ export const Header26 = (props) => {
                     }`}
                   >
                     {button.title}
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>
@@ -53,7 +53,7 @@ Header26.propTypes = {
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      onClick: PropTypes.func
+      href: PropTypes.string
     })
   ),
   image: PropTypes.shape({
@@ -68,10 +68,12 @@ export const Header26Defaults = {
     "Discover the story behind our passion for golf and our commitment to creating exceptional experiences for golf enthusiasts. From organizing premier tournaments to fostering a vibrant community, we're dedicated to elevating the game.",
   buttons: [
     { 
-      title: "Join Our Community"
+      title: "Join Our Community",
+      href: "#"
     }, 
     { 
-      title: "Learn More"
+      title: "Learn More",
+      href: "#"
     }
   ],
   image: {

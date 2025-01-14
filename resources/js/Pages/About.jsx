@@ -18,21 +18,21 @@ export default function About() {
                 buttons={[
                     { 
                         title: "Join Our Community",
-                        onClick: () => console.log("Join clicked")
+                        href: "/register",
                     },
                     { 
                         title: "Contact Us",
-                        onClick: () => console.log("Contact clicked")
+                        href: "/contact",
                     }
                 ]}
                 image={{
-                    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=2070",
+                    src: "/images/ChauChau/pexels-mikhail-nilov-9207747.jpg",
                     alt: "Beautiful golf course overview"
                 }}
             />
             <Layout222 
                 image={{
-                    src: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&q=80&w=2070",
+                    src: "/images/ChauChau/pexels-pixabay-164250.jpg",
                     alt: "Golf club facilities"
                 }}
                 features={[
@@ -40,12 +40,7 @@ export default function About() {
                         icon: 'trophy',
                         heading: "Premier Tournaments",
                         description: "Experience expertly organized tournaments that cater to all skill levels, from beginners to seasoned players.",
-                        buttons: [
-                            {
-                                title: "View Tournaments",
-                                onClick: () => console.log("Tournaments clicked")
-                            }
-                        ]
+                        
                     },
                     {
                         icon: 'users',
@@ -88,17 +83,17 @@ export default function About() {
                 description="We're committed to elevating the standard of golf tournaments through professional organization, community engagement, and exceptional player experiences."
                 buttons={[
                     { 
-                        title: "View Tournament Schedule",
-                        onClick: () => console.log("Schedule clicked")
+                        title: "Tournament Schedule Coming Soon",
+                       href: "",
                     },
                     { 
                         title: "Learn About Our Process",
-                        onClick: () => console.log("Process clicked"),
+                        href: "/membership",
                         iconRight: true
                     }
                 ]}
                 image={{
-                    src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80&w=2070",
+                    src: "/images/ChauChau/pexels-mikhail-nilov-9207742.jpg",
                     alt: "Professional golf tournament"
                 }}
             />
@@ -118,12 +113,12 @@ export default function About() {
                             },
                             {
                                 title: "Contact Us",
-                                onClick: () => console.log("Contact clicked"),
+                                href: "/contact",
                                 iconRight: true
                             }
                         ],
                         image: {
-                            src: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&q=80&w=2070",
+                            src: "/images/ChauChau/pexels-jopwell-1325662.jpg",
                             alt: "Golf tournament management"
                         }
                     },
@@ -134,16 +129,16 @@ export default function About() {
                         buttons: [
                             { 
                                 title: "View Venues",
-                                onClick: () => console.log("Venues clicked")
+                                href: "/membership",
                             },
                             {
                                 title: "Book Now",
-                                onClick: () => console.log("Book clicked"),
+                                href: "/membership",
                                 iconRight: true
                             }
                         ],
                         image: {
-                            src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=2070",
+                            src: "/images/ChauChau/pexels-cottonbro-6256757.jpg",
                             alt: "Premium golf course"
                         }
                     }

@@ -16,9 +16,9 @@ export const Cta3 = (props) => {
           <p className="text-white/90 md:text-lg">{description}</p>
           <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
             {buttons.map((button, index) => (
-              <button 
+              <a 
                 key={index} 
-                onClick={button.onClick}
+                href={button.href}
                 className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
                   index === 0 
                     ? 'bg-tahitigold hover:bg-midtahitigold text-white' 
@@ -26,7 +26,7 @@ export const Cta3 = (props) => {
                 } ${button.className || ''}`}
               >
                 {button.title}
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -49,8 +49,8 @@ Cta3.propTypes = {
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      onClick: PropTypes.func
+      href: PropTypes.string,
+      className: PropTypes.string
     })
   ),
   image: PropTypes.shape({
@@ -65,10 +65,12 @@ export const Cta3Defaults = {
     "Take the first step towards improving your game and joining a community of passionate golfers. Sign up today for exclusive access to events, training, and more.",
   buttons: [
     { 
-      title: "Join Now"
+      title: "Join Now",
+      href: "#"
     }, 
     { 
-      title: "Learn More"
+      title: "Learn More",
+      href: "#"
     }
   ],
   image: {

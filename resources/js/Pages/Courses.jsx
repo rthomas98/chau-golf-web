@@ -17,7 +17,6 @@ export default function Courses() {
             <Layout239 />
             <Layout24 />
             <Layout216 />
-            <Testimonial19 />
             <Layout12 />
             <PartnershipForm />
         </MainLayout>

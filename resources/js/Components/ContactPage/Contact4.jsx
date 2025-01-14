@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from '@inertiajs/react';
+import { toast } from 'react-hot-toast';
 
 const Input = ({ label, type = "text", ...props }) => (
   <div className="grid w-full items-center">
@@ -28,7 +30,7 @@ const Select = ({ label, options, ...props }) => (
   </div>
 );
 
-const RadioGroup = ({ label, options, ...props }) => (
+const RadioGroup = ({ label, options, name, value, onChange, ...props }) => (
   <div className="grid w-full items-center py-3 md:py-4">
     <label className="mb-3 block text-sm font-semibold text-darkerviridiangreen md:mb-4">{label}</label>
     <div className="grid grid-cols-2 gap-x-6 gap-y-3.5">
@@ -36,12 +38,15 @@ const RadioGroup = ({ label, options, ...props }) => (
         <div key={option.value} className="flex items-center space-x-2">
           <input
             type="radio"
-            id={option.value}
+            id={`${name}-${option.value}`}
+            name={name}
             value={option.value}
+            checked={value === option.value}
+            onChange={onChange}
             className="h-4 w-4 text-tahitigold focus:ring-tahitigold"
             {...props}
           />
-          <label htmlFor={option.value} className="text-darkviridiangreen">
+          <label htmlFor={`${name}-${option.value}`} className="text-darkviridiangreen">
             {option.label}
           </label>
         </div>
@@ -56,7 +61,7 @@ export const Contact4 = (props) => {
     ...props,
   };
 
-  const [formData, setFormData] = useState({
+  const { data, setData, post, processing, errors, reset } = useForm({
     firstName: "",
     lastName: "",
     email: "",
@@ -69,16 +74,32 @@ export const Contact4 = (props) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+    if (type === 'radio') {
+      setData(name, value);
+    } else {
+      setData(name, type === 'checkbox' ? checked : value);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Handle form submission
+    
+    try {
+      await post(route('contact.submit'), {
+        onSuccess: () => {
+          toast.success('Message sent successfully!');
+          reset();
+        },
+        onError: (errors) => {
+          Object.keys(errors).forEach((key) => {
+            toast.error(errors[key]);
+          });
+        }
+      });
+    } catch (error) {
+      toast.error('An error occurred. Please try again later.');
+      console.error(error);
+    }
   };
 
   const topics = [
@@ -113,17 +134,19 @@ export const Contact4 = (props) => {
             <Input
               label="First name"
               name="firstName"
-              value={formData.firstName}
+              value={data.firstName}
               onChange={handleChange}
               required
             />
+            {errors.firstName && <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>}
             <Input
               label="Last name"
               name="lastName"
-              value={formData.lastName}
+              value={data.lastName}
               onChange={handleChange}
               required
             />
+            {errors.lastName && <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>}
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -131,46 +154,51 @@ export const Contact4 = (props) => {
               label="Email"
               type="email"
               name="email"
-              value={formData.email}
+              value={data.email}
               onChange={handleChange}
               required
             />
+            {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
             <Input
               label="Phone number"
               type="tel"
               name="phone"
-              value={formData.phone}
+              value={data.phone}
               onChange={handleChange}
             />
+            {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
           </div>
 
           <Select
             label="How can we help?"
             name="topic"
-            value={formData.topic}
+            value={data.topic}
             onChange={handleChange}
             options={topics}
             required
           />
+          {errors.topic && <p className="mt-1 text-sm text-red-600">{errors.topic}</p>}
 
           <RadioGroup
             label="Which best describes you?"
             name="description"
-            value={formData.description}
+            value={data.description}
             onChange={handleChange}
             options={descriptions}
           />
+          {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
 
           <div className="grid w-full items-center">
             <label className="mb-2 block text-sm font-semibold text-darkerviridiangreen">Message</label>
             <textarea
               name="message"
-              value={formData.message}
+              value={data.message}
               onChange={handleChange}
               className="min-h-[11.25rem] w-full rounded-lg border border-viridiangreen/20 bg-white px-4 py-2 focus:border-tahitigold focus:outline-none focus:ring-2 focus:ring-tahitigold/20"
               placeholder="Tell us how we can help..."
               required
             />
+            {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
           </div>
 
           <div className="flex items-center space-x-2">
@@ -178,10 +206,11 @@ export const Contact4 = (props) => {
               type="checkbox"
               id="terms"
               name="acceptTerms"
-              checked={formData.acceptTerms}
+              checked={data.acceptTerms}
               onChange={handleChange}
               className="h-4 w-4 rounded border-viridiangreen/20 text-tahitigold focus:ring-tahitigold"
             />
+            {errors.acceptTerms && <p className="mt-1 text-sm text-red-600">{errors.acceptTerms}</p>}
             <label htmlFor="terms" className="text-sm text-darkviridiangreen">
               I accept the{" "}
               <a href="#" className="text-tahitigold underline hover:text-midtahitigold">
@@ -194,6 +223,7 @@ export const Contact4 = (props) => {
             <button
               type="submit"
               className="rounded-lg bg-chaugreen px-6 py-3 font-semibold text-white transition-colors hover:bg-black"
+              disabled={processing}
             >
               Send Message
             </button>

@@ -39,22 +39,7 @@ export const Layout431 = (props) => {
           <div>
             <div className="ml-[5%] mr-[10%]">
               <p className="text-darkviridiangreen md:text-lg">{description}</p>
-              <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-                {buttons.map((button, index) => (
-                  <button
-                    key={index}
-                    onClick={button.onClick}
-                    className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
-                      index === 0
-                        ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
-                        : 'text-chaugreen hover:text-chaugreen/80 flex items-center gap-1'
-                    }`}
-                  >
-                    {button.title}
-                    {button.iconRight && <ChevronRight className="h-4 w-4" />}
-                  </button>
-                ))}
-              </div>
+              
             </div>
           </div>
         </div>
@@ -89,19 +74,13 @@ export const Layout431Defaults = {
   heading: "Premium Golf Experiences",
   description:
     "Experience golf at its finest with our carefully selected championship courses and world-class facilities. Each venue is chosen to provide the perfect blend of challenge and enjoyment for players of all skill levels.",
-  buttons: [
-    { title: "Explore Venues" },
-    {
-      title: "Book Now",
-      iconRight: true
-    }
-  ],
+
   firstImage: {
-    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=2070",
+    src: "/images/ChauChau/pexels-mickhaupt-5644645.jpg",
     alt: "Championship golf course",
   },
   secondImage: {
-    src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80&w=2070",
+    src: "/images/ChauChau/pexels-jopwell-1325681.jpg",
     alt: "Golf course facilities",
   },
 };

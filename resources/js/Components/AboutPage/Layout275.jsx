@@ -27,8 +27,8 @@ export const Layout275 = (props) => {
             const IconComponent = SECTION_ICONS[section.icon];
             return (
               <div key={index} className="flex w-full gap-6">
-                <div className="mb-5 flex size-12 flex-none items-center justify-center rounded-lg bg-chaugreen/20 self-start md:mb-6">
-                  <IconComponent className="h-6 w-6 text-chaugreen" />
+                <div className="mb-5 flex size-12 flex-none items-center justify-center rounded-lg bg-white/20 self-start md:mb-6">
+                  <IconComponent className="h-6 w-6 text-white" />
                 </div>
                 <div>
                   <h3 className="mb-5 text-2xl font-bold text-white md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
@@ -42,9 +42,9 @@ export const Layout275 = (props) => {
         </div>
         <div className="mt-12 flex flex-wrap justify-start gap-4 md:mt-18 lg:mt-20">
           {buttons.map((button, index) => (
-            <button
+            <a
               key={index}
-              onClick={button.onClick}
+              href={button.href}
               className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
                 index === 0
                   ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
@@ -53,7 +53,7 @@ export const Layout275 = (props) => {
             >
               {button.title}
               {button.iconRight && <ChevronRight className="h-4 w-4" />}
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -98,13 +98,13 @@ export const Layout275Defaults = {
       icon: "trophy"
     },
     {
-      heading: "Community Building",
+      heading: "Exclusive Community Building",
       description:
         "Our events foster a strong sense of community, bringing together golf enthusiasts who share a passion for the sport and competitive spirit.",
       icon: "users"
     },
     {
-      heading: "Skill Development",
+      heading: "Skill Development Programs",
       description:
         "Through our tournaments and events, players can develop their skills, learn from others, and track their progress in a competitive environment.",
       icon: "target"
@@ -115,12 +115,12 @@ export const Layout275Defaults = {
   description:
     "We bring years of experience in organizing and managing golf tournaments that combine professional standards with a welcoming atmosphere for all participants.",
   image: {
-    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=2070",
+    src: "/images/ChauChau/pexels-mikhail-nilov-9207742.jpg",
     alt: "Professional golf tournament",
   },
   buttons: [
     { 
-      title: "View Upcoming Events"
+      title: "Events Coming Soon"
     },
     {
       title: "Learn More",

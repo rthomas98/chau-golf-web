@@ -404,10 +404,8 @@ export const Navbar5Defaults = {
   links: [
     { title: "Home", url: "/" },
     { title: "About Us", url: "/about" },
-    { title: "Tournaments", url: "/tournaments" },
     { title: "Membership", url: "/membership" },
     { title: "Courses & Partners", url: "/courses" },
-    { title: "Store", url: "/store" },
     { title: "Contact Us", url: "/contact" },
   ],
   buttons: [

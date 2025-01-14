@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const Layout3 = (props) => {
-  const { heading, description, image } = {
+  const { heading, description, image, buttons } = {
     ...Layout3Defaults,
     ...props,
   };
@@ -16,6 +16,23 @@ export const Layout3 = (props) => {
               {heading.split(' ').slice(1).join(' ')}
             </h1>
             <p className="text-darkviridiangreen md:text-lg">{description}</p>
+            {buttons && buttons.length > 0 && (
+              <div className="mt-8 flex flex-wrap gap-4">
+                {buttons.map((button, index) => (
+                  <a
+                    key={index}
+                    href={button.href}
+                    className={`rounded-lg px-6 py-3 font-medium transition-colors ${
+                      button.variant === "secondary"
+                        ? "border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white"
+                        : "bg-chaugreen text-white hover:bg-black"
+                    }`}
+                  >
+                    {button.title}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
           <div className="aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
             <img 
@@ -33,6 +50,13 @@ export const Layout3 = (props) => {
 Layout3.propTypes = {
   heading: PropTypes.string,
   description: PropTypes.string,
+  buttons: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      variant: PropTypes.oneOf(["primary", "secondary"]),
+      href: PropTypes.string
+    })
+  ),
   image: PropTypes.shape({
     src: PropTypes.string.isRequired,
     alt: PropTypes.string

@@ -30,9 +30,9 @@ export const Layout360 = (props) => {
                 <p className="text-darkviridiangreen">{section.description}</p>
                 <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
                   {section.buttons.map((button, index) => (
-                    <button
+                    <a
                       key={index}
-                      onClick={button.onClick}
+                      href={button.href}
                       className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
                         index === 0
                           ? 'bg-viridiangreen text-white hover:bg-darkviridiangreen'
@@ -41,7 +41,7 @@ export const Layout360 = (props) => {
                     >
                       {button.title}
                       {button.iconRight && <ChevronRight className="h-4 w-4" />}
-                    </button>
+                    </a>
                   ))}
                 </div>
               </div>

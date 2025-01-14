@@ -16,6 +16,8 @@
         "laravel/tinker": "^2.9",
         "spatie/icalendar-generator": "^2.9",
         "spatie/laravel-permission": "^6.10",
+        "symfony/http-client": "^7.2",
+        "symfony/postmark-mailer": "^7.2",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {

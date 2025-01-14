@@ -74,7 +74,7 @@ export const Layout18Defaults = {
     },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1592919505780-303950717480?q=80&w=3270&auto=format&fit=crop",
+    src: "/images/ChauChau/pexels-kampus-6542474.jpg",
     alt: "Chau Golf Club Facilities",
   },
 };

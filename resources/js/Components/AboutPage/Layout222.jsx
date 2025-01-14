@@ -42,18 +42,7 @@ export const Layout222 = (props) => {
                       {feature.heading}
                     </h3>
                     <p className="text-darkviridiangreen">{feature.description}</p>
-                    <div className="mt-5 flex items-center gap-x-4 md:mt-6">
-                      {feature.buttons.map((button, index) => (
-                        <button
-                          key={index}
-                          onClick={button.onClick}
-                          className="flex items-center gap-2 text-chaugreen transition-colors group-hover:text-chaugreen/80"
-                        >
-                          {button.title}
-                          <ChevronRight className="h-4 w-4" />
-                        </button>
-                      ))}
-                    </div>
+                    
                   </div>
                 );
               })}

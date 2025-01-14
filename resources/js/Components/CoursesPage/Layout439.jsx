@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
-const Button = ({ variant = "primary", children, className = "", ...props }) => {
+const Button = ({ variant = "primary", children, className = "", href, ...props }) => {
   const baseClasses = "px-6 py-3 font-semibold rounded-lg transition-colors";
   const variants = {
     primary: "bg-chaugreen text-white hover:bg-black",
@@ -9,11 +9,16 @@ const Button = ({ variant = "primary", children, className = "", ...props }) => 
     link: "text-black hover:text-chaugreen inline-flex items-center gap-2"
   };
 
+  const Component = href ? 'a' : 'button';
   return (
-    <button className={`${baseClasses} ${variants[variant]} ${className}`} {...props}>
+    <Component 
+      className={`${baseClasses} ${variants[variant]} ${className}`} 
+      href={href} 
+      {...props}
+    >
       {children}
       {variant === 'link' && <ChevronRight className="h-5 w-5" />}
-    </button>
+    </Component>
   );
 };
 
@@ -68,20 +73,22 @@ export const Layout439Defaults = {
     "Discover the finest golf courses in the Dallas area, where lush greens and challenging layouts await. Our partnerships with local clubs ensure you have access to exclusive rates and exceptional experiences.",
   buttons: [
     { 
-      title: "Book a Tee Time", 
-      variant: "primary" 
+      title: "Become a Member", 
+      variant: "primary", 
+      href: "/membership"
     },
     {
-      title: "View Course Details",
-      variant: "link"
+      title: "learn more about ChauChau Golf",
+      variant: "link",
+      href: "/about"
     },
   ],
   firstImage: {
-    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=3270&auto=format&fit=crop",
+    src: "/images/ChauChau/pexels-jeffrey-1697421387-27904140.jpg",
     alt: "Golf course fairway view",
   },
   secondImage: {
-    src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2970&auto=format&fit=crop",
+    src: "/images/ChauChau/pexels-cottonbro-6256760.jpg",
     alt: "Golf course landscape view",
   },
 };

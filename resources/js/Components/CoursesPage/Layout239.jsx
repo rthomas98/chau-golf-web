@@ -50,13 +50,7 @@ export const Layout239 = (props) => {
               </div>
             ))}
           </div>
-          <div className="mt-12 flex items-center gap-4 md:mt-18 lg:mt-20">
-            {buttons.map((button, index) => (
-              <Button key={index} {...button}>
-                {button.title}
-              </Button>
-            ))}
-          </div>
+        
         </div>
       </div>
     </section>
@@ -71,7 +65,7 @@ export const Layout239Defaults = {
   sections: [
     {
       image: {
-        src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=3270&auto=format&fit=crop",
+        src: "/images/ChauChau/pexels-iggy-barskov-79788387-9736758.jpg",
         alt: "Championship course",
       },
       heading: "Championship Courses",
@@ -95,13 +89,6 @@ export const Layout239Defaults = {
       heading: "Executive Courses",
       description:
         "Perfect for quick rounds or improving your short game, these courses offer quality golf experiences in a time-efficient format.",
-    },
-  ],
-  buttons: [
-    { title: "Explore All Courses", variant: "primary" },
-    {
-      title: "Learn About Membership",
-      variant: "link",
     },
   ],
 };

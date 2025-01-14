@@ -29,9 +29,9 @@ export const Layout4 = (props) => {
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
               {buttons.map((button, index) => (
-                <button
+                <a
                   key={index}
-                  onClick={button.onClick}
+                  href={button.href}
                   className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
                     index === 0
                       ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
@@ -40,7 +40,7 @@ export const Layout4 = (props) => {
                 >
                   {button.title}
                   {button.iconRight && <ChevronRight className="h-4 w-4" />}
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -94,11 +94,8 @@ export const Layout4Defaults = {
     },
   ],
   buttons: [
-    { title: "Join Our Community" },
-    {
-      title: "Learn More",
-      iconRight: true
-    }
+    { title: "Join Our Community", href: "/register" },
+    
   ],
   image: {
     src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=2070",

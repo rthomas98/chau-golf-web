@@ -73,7 +73,7 @@ export const Layout12Defaults = {
     },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=3270&auto=format&fit=crop",
+    src: "/images/ChauChau/pexels-mickhaupt-5644641.jpg",
     alt: "Scenic golf course fairway with water feature",
   },
 };

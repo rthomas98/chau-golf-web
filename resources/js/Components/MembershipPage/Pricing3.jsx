@@ -118,25 +118,28 @@ export const Pricing3 = (props) => {
 
   return (
     <section className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
-        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-18 lg:mb-20">
-          <p className="mb-3 font-semibold text-chaugreen md:mb-4">{tagline}</p>
-          <h2 className="mb-5 text-4xl font-bold text-black md:mb-6 md:text-5xl lg:text-6xl">
+      <div className="container mx-auto">
+        <div className="mb-12 text-center md:mb-18 lg:mb-20">
+          <h2 className="mb-5 text-5xl font-bold text-darkerviridiangreen md:mb-6 md:text-7xl lg:text-8xl">
             {heading}
           </h2>
-          <p className="text-black/70 md:text-lg">{description}</p>
+          <p className="mx-auto max-w-2xl text-darkviridiangreen md:text-lg">
+            {description}
+          </p>
         </div>
-        <PricingToggle isYearly={isYearly} onToggle={setIsYearly} />
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {plans.map((plan, index) => (
-            <PricingCard 
-              key={index} 
-              plan={plan} 
-              isPopular={plan.isPopular} 
-              isYearly={isYearly}
-              auth={auth}
-            />
-          ))}
+        <div className="mx-auto max-w-5xl">
+          <PricingToggle isYearly={isYearly} onToggle={setIsYearly} />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+            {plans.map((plan, index) => (
+              <PricingCard 
+                key={index} 
+                plan={plan} 
+                isPopular={plan.isPopular} 
+                isYearly={isYearly}
+                auth={auth}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -182,21 +185,6 @@ export const Pricing3Defaults = {
       isPopular: false,
     },
     {
-      name: "Family",
-      description: "Share the joy of golf with your loved ones",
-      price: 3999,
-      features: [
-        "All Individual benefits",
-        "Coverage for spouse and children",
-        "Family golf clinics",
-        "Junior program access",
-        "Guest privileges",
-        "Social events access"
-      ],
-      buttonText: "Select Family Plan",
-      isPopular: true,
-    },
-    {
       name: "Corporate",
       description: "Ideal for business networking and client entertainment",
       price: 5999,
@@ -209,7 +197,7 @@ export const Pricing3Defaults = {
         "Customized packages available"
       ],
       buttonText: "Select Corporate Plan",
-      isPopular: false,
+      isPopular: true,
     },
   ],
 };

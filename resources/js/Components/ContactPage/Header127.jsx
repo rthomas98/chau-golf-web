@@ -29,9 +29,9 @@ export const Header127 = (props) => {
             <p className="text-darkviridiangreen md:text-md">{description}</p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               {buttons.map((button, index) => (
-                <Button key={index} {...button}>
+                <a key={index} {...button}>
                   {button.title}
-                </Button>
+                </a>
               ))}
             </div>
           </div>
@@ -69,25 +69,24 @@ export const Header127Defaults = {
   description:
     "Have questions about membership, partnerships, or our golf network? We're here to help you discover the perfect golfing experience in Dallas.",
   buttons: [
+   
     { 
-      title: "Contact Us", 
-      variant: "primary" 
-    }, 
-    { 
-      title: "View FAQs", 
-      variant: "secondary" 
+      title: "Become A Member", 
+      variant: "secondary", 
+      href: "/membership"
+
     }
   ],
   firstImage: {
-    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=3270&auto=format&fit=crop",
+    src: "/images/ChauChau/shutterstock_388687852.jpg",
     alt: "Golf course fairway view",
   },
   secondImage: {
-    src: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2970&auto=format&fit=crop",
+    src: "/images/ChauChau/shutterstock_2458218737.jpg",
     alt: "Golf course landscape",
   },
   thirdImage: {
-    src: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?q=80&w=3276&auto=format&fit=crop",
+    src: "/images/ChauChau/shutterstock_2028535712.jpg",
     alt: "Golf course green",
   },
 };

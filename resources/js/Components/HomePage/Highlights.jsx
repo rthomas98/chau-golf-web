@@ -63,13 +63,13 @@ export const Highlights = (props) => {
               </h3>
               <p className="text-darkviridiangreen">{section.description}</p>
               <div className="mt-6 flex gap-4 md:mt-8">
-                <button
+                <a
+                  href={section.button.href}
                   className="flex items-center gap-2 rounded-lg bg-chaugreen px-6 py-3 font-semibold text-white transition-colors hover:bg-black"
-                  onClick={section.button.onClick}
                 >
                   {section.button.title}
                   <ChevronRight className="h-5 w-5" />
-                </button>
+                </a>
               </div>
             </motion.div>
           ))}
@@ -91,7 +91,7 @@ Highlights.propTypes = {
       button: PropTypes.shape({
         title: PropTypes.string.isRequired,
         variant: PropTypes.string,
-        onClick: PropTypes.func
+        href: PropTypes.string
       })
     })
   )
@@ -110,6 +110,7 @@ export const HighlightsDefaults = {
       button: {
         title: "View Tournament Schedule",
         variant: "link",
+        href: "/tournaments"
       },
     },
     {
@@ -123,6 +124,7 @@ export const HighlightsDefaults = {
       button: {
         title: "Explore Membership Options",
         variant: "link",
+        href: "/membership"
       },
     },
   ],

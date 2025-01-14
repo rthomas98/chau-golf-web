@@ -22,7 +22,7 @@ export const Layout24 = (props) => {
             <p className="text-black md:text-md">{description}</p>
           </div>
           <div>
-            <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=3270&auto=format&fit=crop" className="w-full rounded-lg object-cover shadow-lg" alt={image.alt} />
+            <img src="/images/ChauChau/pexels-kindelmedia-6572988.jpg" className="w-full rounded-lg object-cover shadow-lg" alt={image.alt} />
           </div>
         </div>
       </div>

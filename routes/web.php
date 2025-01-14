@@ -9,6 +9,7 @@ use App\Http\Controllers\MembershipApplicationController;
 use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\PlayDateController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -39,6 +40,8 @@ Route::get('/faq', function () {
 Route::get('/contact', function () {
     return Inertia::render('Contact');
 });
+
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/store', function () {
     return Inertia::render('Store');

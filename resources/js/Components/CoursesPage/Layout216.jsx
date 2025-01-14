@@ -41,13 +41,7 @@ export const Layout216 = (props) => {
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-              {buttons.map((button, index) => (
-                <Button key={index} {...button}>
-                  {button.title}
-                </Button>
-              ))}
-            </div>
+            
           </div>
         </div>
       </div>
@@ -71,7 +65,7 @@ export const Layout216Defaults = {
     },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=3270&auto=format&fit=crop",
+    src: "/images/ChauChau/pexels-kindelmedia-6572954.jpg",
     alt: "Premium Dallas golf club facilities",
   },
   stats: [

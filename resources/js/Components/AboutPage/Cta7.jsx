@@ -19,9 +19,9 @@ export const Cta7 = (props) => {
         </div>
         <div className="flex items-start justify-start gap-4">
           {buttons.map((button, index) => (
-            <button
+            <a
               key={index}
-              onClick={button.onClick}
+              href={button.href}
               className={`rounded-lg px-6 py-3 font-semibold transition-colors ${
                 index === 0
                   ? 'bg-chaugreen text-white hover:bg-chaugreen/80'
@@ -29,7 +29,7 @@ export const Cta7 = (props) => {
               }`}
             >
               {button.title}
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -54,11 +54,11 @@ export const Cta7Defaults = {
   buttons: [
     { 
       title: "Join Now",
-      onClick: () => console.log("Join clicked")
+      href: "membership",
     }, 
     { 
       title: "Learn More",
-      onClick: () => console.log("Learn clicked")
+      heref: "about",
     }
   ],
 };

@@ -31,9 +31,9 @@ const FeatureSectionContent = ({ isEven, ...featureSection }) => (
       <p className="text-black">{featureSection.description}</p>
       <div className="mt-6 flex items-center gap-x-4 md:mt-8">
         {featureSection.buttons.map((button, index) => (
-          <button
+          <a
             key={index}
-            onClick={button.onClick}
+            href={button.href}
             className={`flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors ${
               index === 0
                 ? 'bg-chaugreen text-white hover:bg-black'
@@ -42,7 +42,7 @@ const FeatureSectionContent = ({ isEven, ...featureSection }) => (
           >
             {button.title}
             {button.iconRight && <ChevronRight className="h-4 w-4" />}
-          </button>
+          </a>
         ))}
       </div>
     </div>
@@ -151,9 +151,11 @@ export const Layout408Defaults = {
       description:
         "Our tournaments are designed to provide a professional experience for players of all skill levels, with meticulous attention to every detail.",
       buttons: [
-        { title: "View Tournaments" },
+        { title: "Tournaments Coming Soon" },
+
         {
           title: "Learn More",
+          href: "/membership",
           iconRight: true
         }
       ],
@@ -168,9 +170,10 @@ export const Layout408Defaults = {
       description:
         "We create more than just tournaments - we build a community of passionate golfers who share our love for the sport and competitive spirit.",
       buttons: [
-        { title: "Join Community" },
+        { title: "Join Community", href: "/membership", },
+
         {
-          title: "See Events",
+          title: "Events Coming Soon",
           iconRight: true
         }
       ],
@@ -185,9 +188,10 @@ export const Layout408Defaults = {
       description:
         "We're constantly innovating to enhance the tournament experience, incorporating new technologies and methods to improve every aspect of our events.",
       buttons: [
-        { title: "Explore Innovation" },
+        { title: "Explore Innovation", href: "/membership", },
         {
           title: "Contact Us",
+          href: "/contact",
           iconRight: true
         }
       ],

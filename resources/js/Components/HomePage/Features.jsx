@@ -103,8 +103,9 @@ export const Features = (props) => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
           >
             {buttons.map((button, index) => (
-              <button
+              <a
                 key={index}
+                href={button.href}
                 className={`flex items-center gap-2 rounded-md px-6 py-3 font-medium transition-colors ${
                   button.variant === "secondary"
                     ? "border-2 border-chaugreen text-chaugreen hover:bg-chaugreen hover:text-white"
@@ -115,7 +116,7 @@ export const Features = (props) => {
               >
                 {button.title}
                 {button.variant === "link" && <RxChevronRight className="h-5 w-5" />}
-              </button>
+              </a>
             ))}
           </motion.div>
         </div>
@@ -138,7 +139,8 @@ Features.propTypes = {
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      variant: PropTypes.oneOf(["primary", "secondary", "link"])
+      variant: PropTypes.oneOf(["primary", "secondary", "link"]),
+      href: PropTypes.string
     })
   )
 };
@@ -169,10 +171,11 @@ export const FeaturesDefaults = {
     },
   ],
   buttons: [
-    { title: "View All Features", variant: "secondary" },
+    { title: "View All Features", variant: "secondary", href: "#" },
     {
       title: "Learn More",
       variant: "link",
+      href: "#"
     },
   ],
 };
