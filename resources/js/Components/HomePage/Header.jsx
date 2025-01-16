@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from '@inertiajs/react';
+import OptimizedImage from '../Common/OptimizedImage';
 
 export const Header = (props) => {
     const { heading, description, buttons, images } = {
@@ -9,29 +10,55 @@ export const Header = (props) => {
         ...props,
     };
 
-    const controls = useAnimationControls();
+    const [isSliderPaused, setIsSliderPaused] = useState(false);
+    const sliderRef = useRef(null);
 
     useEffect(() => {
-        const startAnimation = async () => {
-            await controls.start({
-                x: "-100%",
-                transition: {
-                    duration: 20,
-                    ease: "linear",
-                    repeat: Infinity,
-                    repeatType: "loop"
-                }
+        const preloadImages = () => {
+            images.forEach(image => {
+                const img = new Image();
+                img.src = image.src;
             });
         };
-        
-        startAnimation();
-    }, [controls]);
+        preloadImages();
+    }, [images]);
+
+    useEffect(() => {
+        if (!sliderRef.current) return;
+
+        const slider = sliderRef.current;
+        let animationFrameId;
+        let startTime;
+        let currentPosition = 0;
+
+        const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            if (isSliderPaused) {
+                startTime = timestamp - (currentPosition / 0.0005); // Extremely slow speed
+                animationFrameId = requestAnimationFrame(animate);
+                return;
+            }
+
+            const progress = timestamp - startTime;
+            currentPosition = (progress * 0.0005) % 100; // Extremely slow speed (100x slower than original)
+            
+            slider.style.transform = `translate3d(-${currentPosition}%, 0, 0)`;
+            
+            animationFrameId = requestAnimationFrame(animate);
+        };
+
+        animationFrameId = requestAnimationFrame(animate);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, [isSliderPaused]);
 
     // Double the images array to create seamless loop
     const duplicatedImages = [...images, ...images];
 
     return (
-        <section id="hero" className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
+        <section id="hero" className="bg-white px-[5%] py-16 md:py-24 lg:py-28 overflow-hidden">
             <div className="container mx-auto">
                 <div className="flex flex-col items-center text-center mb-12 md:mb-16">
                     <motion.h1 
@@ -101,33 +128,34 @@ export const Header = (props) => {
                         ))}
                     </motion.div>
                 </div>
-
-                <div className="relative max-w-6xl mx-auto overflow-hidden">
-                    <motion.div 
-                        className="flex gap-6"
-                        animate={controls}
+                <div 
+                    className="relative w-full overflow-hidden"
+                    onMouseEnter={() => setIsSliderPaused(true)}
+                    onMouseLeave={() => setIsSliderPaused(false)}
+                >
+                    <div 
+                        ref={sliderRef}
+                        className="flex gap-4 will-change-transform"
+                        style={{
+                            width: `${duplicatedImages.length * 100}%`,
+                        }}
                     >
                         {duplicatedImages.map((image, index) => (
-                            <motion.div
+                            <div
                                 key={index}
-                                className="relative min-w-[calc(33.333%-1rem)] aspect-[4/3]"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ 
-                                    type: "spring",
-                                    stiffness: 100,
-                                    damping: 20,
-                                    delay: index * 0.1 
-                                }}
+                                className="relative flex-shrink-0"
+                                style={{ width: `calc(100% / ${duplicatedImages.length})` }}
                             >
-                                <img
+                                <OptimizedImage
                                     src={image.src}
                                     alt={image.alt}
-                                    className="absolute inset-0 h-full w-full object-cover rounded-xl shadow-lg"
+                                    className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover object-center rounded-xl shadow-xl"
+                                    loading={index < 3 ? "eager" : "lazy"}
+                                    quality={100}
                                 />
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -140,7 +168,8 @@ Header.propTypes = {
     buttons: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string,
-            variant: PropTypes.oneOf(["primary", "secondary"])
+            variant: PropTypes.oneOf(["primary", "secondary"]),
+            href: PropTypes.string
         })
     ),
     images: PropTypes.arrayOf(
@@ -151,38 +180,9 @@ Header.propTypes = {
     )
 };
 
-export const HeaderDefaults = {
-    heading: "Experience Golf Like Never",
-    description:
-        "Join our exclusive golf community and elevate your game with access to premier courses, expert instruction, and a network of passionate golfers.",
-    buttons: [
-        { title: "Join Now", variant: "primary" }, 
-        { title: "Learn More", variant: "secondary" }
-    ],
-    images: [
-        {
-            src: "/images/golf-sunset.jpg",
-            alt: "Golfer at sunset on a beautiful course",
-        },
-        {
-            src: "/images/golf-course.jpg",
-            alt: "Scenic golf course view",
-        },
-        {
-            src: "/images/golf-player.jpg",
-            alt: "Professional golfer in action",
-        },
-        {
-            src: "/images/tournament.jpg",
-            alt: "Tournament action shot",
-        },
-        {
-            src: "/images/membership.jpg",
-            alt: "Golf club membership benefits",
-        },
-        {
-            src: "/images/golf-benefits.jpg",
-            alt: "Golf lifestyle benefits",
-        }
-    ]
+const HeaderDefaults = {
+    heading: "",
+    description: "",
+    buttons: [],
+    images: []
 };
