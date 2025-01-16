@@ -1,0 +1,1 @@
+import{j as t}from"./app-XbnY-kOZ.js";import{M as o}from"./MainLayout-Cheml7Uc.js";import"./index-UNar27Jo.js";import"./Dropdown-CcLY8L9H.js";import"./transition-kq9RLoLQ.js";import"./proxy-WnHTy-7x.js";function e(){return t.jsx(o,{children:t.jsx("h1",{className:"text-4xl font-bold p-8",children:"FAQ"})})}export{e as default};
