@@ -24,6 +24,7 @@ use App\Filament\Resources\PlayDateResource;
 use App\Filament\Resources\UserResource;
 use App\Filament\Resources\MembershipResource;
 use App\Filament\Resources\GuestParticipantResource;
+use App\Filament\Resources\NewsletterResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -47,6 +48,7 @@ class AdminPanelProvider extends PanelProvider
                 UserResource::class,
                 MembershipResource::class,
                 GuestParticipantResource::class,
+                NewsletterResource::class,
             ])
             ->pages([
                 Pages\Dashboard::class,
@@ -73,6 +75,7 @@ class AdminPanelProvider extends PanelProvider
                 'User Management',
                 'Content Management',
                 'Partner Management',
+                'Marketing',
             ])
             ->maxContentWidth('full')
             ->sidebarCollapsibleOnDesktop();

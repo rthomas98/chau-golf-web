@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { router } from '@inertiajs/react';
 
 export function Footer() {
   const {
@@ -66,11 +67,35 @@ export function Footer() {
   };
 
   const [emailInput, setEmailInput] = useState("");
-  const handleSubmit = (event) => {
+  const [message, setMessage] = useState({ type: '', text: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({
-      emailInput,
-    });
+    setIsSubmitting(true);
+    setMessage({ type: '', text: '' });
+
+    try {
+      const response = await router.post('/api/newsletter/subscribe', 
+        { email: emailInput },
+        {
+          preserveState: true,
+          preserveScroll: true,
+          onSuccess: () => {
+            setMessage({ type: 'success', text: 'Thank you for subscribing to our newsletter!' });
+            setEmailInput('');
+          },
+          onError: (errors) => {
+            setMessage({ type: 'error', text: errors.email || 'An error occurred. Please try again.' });
+          },
+        }
+      );
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      setMessage({ type: 'error', text: 'An error occurred. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -120,21 +145,21 @@ export function Footer() {
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 className="flex-1 rounded-lg border border-chaugreen/20 bg-white px-4 py-2 text-sm text-black placeholder-black/50 focus:border-chaugreen focus:outline-none focus:ring-2 focus:ring-chaugreen/20"
+                disabled={isSubmitting}
               />
               <button
                 type="submit"
-                className="rounded-lg bg-chaugreen px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-black"
+                className="rounded-lg bg-chaugreen px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-black disabled:opacity-50"
+                disabled={isSubmitting}
               >
-                Subscribe
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
             </form>
-            <p className="text-xs text-black/70">
-              By subscribing you agree to our{" "}
-              <a href="#" className="text-chaugreen hover:underline">
-                Privacy Policy
-              </a>
-              .
-            </p>
+            {message.text && (
+              <p className={`text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+                {message.text}
+              </p>
+            )}
           </div>
         </div>
 

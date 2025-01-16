@@ -10,13 +10,14 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Cashier\Billable;
 use App\Models\Membership;
 use App\Models\PlayDateGuest;
 use App\Models\PlayDate;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, Billable;
 
     /**
      * The attributes that are mass assignable.

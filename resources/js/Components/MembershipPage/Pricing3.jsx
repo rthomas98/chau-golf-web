@@ -1,35 +1,32 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Check } from "lucide-react";
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
-const PricingToggle = ({ isYearly, onToggle }) => (
-  <div className="mb-8 flex justify-center">
-    <div className="inline-flex items-center rounded-lg bg-gray p-1">
-      <button
-        className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors ${
-          !isYearly ? 'bg-chaugreen text-white' : 'text-black hover:text-black/70'
-        }`}
-        onClick={() => onToggle(false)}
-      >
-        Monthly
-      </button>
-      <button
-        className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors ${
-          isYearly ? 'bg-chaugreen text-white' : 'text-black hover:text-black/70'
-        }`}
-        onClick={() => onToggle(true)}
-      >
-        Yearly
-        <span className="ml-1 text-xs">Save 20%</span>
-      </button>
-    </div>
-  </div>
-);
-
-const PricingCard = ({ plan, isPopular, isYearly, auth }) => {
-  const price = isYearly ? plan.price : Math.round(plan.price / 0.8 / 12);
-  const isApplicationPage = window.location.pathname === '/membership/apply';
+const PricingCard = ({ plan, isPopular, auth }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const price = plan.price;
+  
+  const handleSubscribe = async () => {
+    setIsLoading(true);
+    try {
+      const response = await router.post(route('stripe.checkout'), {
+        price_id: plan.stripe_price_id,
+      });
+      
+      if (response.error) {
+        console.error('Error:', response.error);
+        return;
+      }
+      
+      // Redirect to Stripe Checkout
+      window.location.href = response.url;
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   return (
     <div className={`flex flex-col rounded-lg p-8 ${isPopular ? 'bg-chaugreen/10 border-2 border-chaugreen' : 'bg-gray'}`}>
@@ -46,12 +43,7 @@ const PricingCard = ({ plan, isPopular, isYearly, auth }) => {
       </div>
       <div className="mb-6">
         <span className="text-5xl font-bold text-black">${price}</span>
-        <span className="text-black/70">/{isYearly ? 'year' : 'month'}</span>
-        {isYearly && (
-          <div className="mt-2 text-sm text-chaugreen">
-            Save ${Math.round((plan.price / 0.8) - plan.price)} per year
-          </div>
-        )}
+        <span className="text-black/70">/year</span>
       </div>
       <div className="mb-8 space-y-4">
         {plan.features.map((feature, index) => (
@@ -61,29 +53,18 @@ const PricingCard = ({ plan, isPopular, isYearly, auth }) => {
           </div>
         ))}
       </div>
-      {isApplicationPage ? (
+      {auth?.user ? (
         <button
-          type="button"
-          onClick={() => document.getElementById('membership-form').scrollIntoView({ behavior: 'smooth' })}
+          onClick={handleSubscribe}
+          disabled={isLoading}
           className={`mt-auto rounded-lg px-6 py-3 font-semibold text-center transition-colors ${
             isPopular
               ? 'bg-chaugreen text-white hover:bg-black'
               : 'bg-chaugreen text-white hover:bg-black'
-          }`}
+          } ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
         >
-          Select This Plan
+          {isLoading ? 'Processing...' : plan.buttonText}
         </button>
-      ) : auth?.user ? (
-        <Link
-          href={route('membership.apply')}
-          className={`mt-auto rounded-lg px-6 py-3 font-semibold text-center transition-colors ${
-            isPopular
-              ? 'bg-chaugreen text-white hover:bg-black'
-              : 'bg-chaugreen text-white hover:bg-black'
-          }`}
-        >
-          {plan.buttonText}
-        </Link>
       ) : (
         <div className="space-y-3">
           <Link
@@ -94,7 +75,7 @@ const PricingCard = ({ plan, isPopular, isYearly, auth }) => {
                 : 'bg-chaugreen text-white hover:bg-black'
             }`}
           >
-            Log in to Apply
+            Log in to Subscribe
           </Link>
           <Link
             href={route('register')}
@@ -114,8 +95,6 @@ export const Pricing3 = (props) => {
     ...props,
   };
 
-  const [isYearly, setIsYearly] = useState(true);
-
   return (
     <section className="bg-white px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container mx-auto">
@@ -128,14 +107,12 @@ export const Pricing3 = (props) => {
           </p>
         </div>
         <div className="mx-auto max-w-5xl">
-          <PricingToggle isYearly={isYearly} onToggle={setIsYearly} />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
             {plans.map((plan, index) => (
               <PricingCard 
                 key={index} 
                 plan={plan} 
-                isPopular={plan.isPopular} 
-                isYearly={isYearly}
+                isPopular={plan.isPopular}
                 auth={auth}
               />
             ))}
@@ -156,6 +133,7 @@ Pricing3.propTypes = {
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
+      stripe_price_id: PropTypes.string.isRequired,
       features: PropTypes.arrayOf(PropTypes.string).isRequired,
       buttonText: PropTypes.string.isRequired,
       isPopular: PropTypes.bool,
@@ -170,33 +148,35 @@ export const Pricing3Defaults = {
     "Select from our carefully crafted membership options, each designed to provide you with the ultimate golfing experience.",
   plans: [
     {
-      name: "Individual",
+      name: "Individual Membership",
       description: "Perfect for the solo golfer looking to improve their game",
-      price: 2499,
+      price: 79,
+      stripe_price_id: 'price_individual', // Replace with your Stripe Price ID
       features: [
-        "Unlimited course access",
-        "Priority tee times",
-        "Access to practice facilities",
-        "Member-only events",
-        "Locker room access",
-        "10% off pro shop purchases"
+        "Get a golf gift or a polo golf shirt when sign up",
+        "Secure your spot in tournaments",
+        "Participate in members-only events, championships, and competitive play",
+        "Enjoy reduced rates on tournament fees",
+        "Connect with fellow golf enthusiasts, business professionals, and club members",
+        "Enjoy member-only discounts on ChauChauGolf merchandise, equipment, apparel"
       ],
-      buttonText: "Select Individual Plan",
+      buttonText: "Subscribe Now",
       isPopular: false,
     },
     {
-      name: "Corporate",
-      description: "Ideal for business networking and client entertainment",
-      price: 5999,
+      name: "Business Membership",
+      description: "For 8 employees",
+      price: 550,
+      stripe_price_id: 'price_business', // Replace with your Stripe Price ID
       features: [
-        "All Family benefits",
-        "Corporate tournament options",
-        "Meeting room access",
-        "Client guest passes",
-        "Networking events",
-        "Customized packages available"
+        "Get a golf gift or a polo golf shirt for each member when sign up",
+        "Secure spots in tournaments",
+        "Participate in members-only events, championships, and competitive play",
+        "Enjoy reduced rates on tournament fees",
+        "Connect with fellow golf enthusiasts, business professionals, and club members",
+        "Enjoy member-only discounts on ChauChauGolf merchandise, equipment, apparel"
       ],
-      buttonText: "Select Corporate Plan",
+      buttonText: "Subscribe Now",
       isPopular: true,
     },
   ],

@@ -10,6 +10,8 @@ use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\PlayDateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\StripeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -91,5 +93,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/registrations', [DashboardController::class, 'registrations'])->name('dashboard.registrations');
 });
+
+// Stripe routes
+Route::middleware(['auth'])->group(function () {
+    Route::post('/stripe/create-checkout-session', [StripeController::class, 'createCheckoutSession'])
+        ->name('stripe.checkout');
+    Route::get('/membership/success', [StripeController::class, 'success'])
+        ->name('membership.success');
+    Route::get('/membership/cancel', [StripeController::class, 'cancel'])
+        ->name('membership.cancel');
+});
+
+Route::post('/api/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 require __DIR__.'/auth.php';
