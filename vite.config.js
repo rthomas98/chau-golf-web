@@ -17,4 +17,24 @@ export default defineConfig({
             '@images': '/resources/images'
         },
     },
+    build: {
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: [
+                        'react',
+                        'react-dom',
+                        '@inertiajs/react',
+                        'mapbox-gl',
+                        'react-map-gl'
+                    ],
+                    relume: [
+                        '@relume_io/relume-ui',
+                        '@relume_io/relume-tailwind'
+                    ]
+                }
+            }
+        }
+    }
 });
