@@ -14,6 +14,7 @@ use Laravel\Cashier\Billable;
 use App\Models\Membership;
 use App\Models\PlayDateGuest;
 use App\Models\PlayDate;
+use App\Models\TournamentRegistration;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -94,5 +95,10 @@ class User extends Authenticatable implements FilamentUser
             'id',
             'play_date_id'
         );
+    }
+
+    public function tournamentRegistrations()
+    {
+        return $this->hasMany(TournamentRegistration::class);
     }
 }

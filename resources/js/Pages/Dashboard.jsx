@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
 import { Button } from '@/Components/ui/button';
-import { Trophy, Calendar, User } from 'lucide-react';
+import { Trophy, Calendar, User, CreditCard } from 'lucide-react';
 
 const Dashboard = ({ auth, hasMembership }) => {
   return (
@@ -21,6 +21,27 @@ const Dashboard = ({ auth, hasMembership }) => {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Subscription Management Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CreditCard className="h-5 w-5" />
+                Membership
+              </CardTitle>
+              <CardDescription>Manage your membership subscription</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Button
+                  className="w-full"
+                  onClick={() => window.location.href = route('billing.portal')}
+                >
+                  Manage Subscription
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

@@ -13,6 +13,33 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      {/* Topbar */}
+      <div className="fixed top-0 right-0 left-64 z-30 h-16 bg-white border-b border-gray-200">
+        <div className="flex h-full items-center justify-end px-4">
+          <div className="flex items-center space-x-4">
+            <Link
+              href={route('profile.edit')}
+              className="text-gray-700 hover:text-gray-900 transition-colors duration-200"
+            >
+              <User className="h-5 w-5" />
+            </Link>
+            <Link
+              href={route('faq')}
+              className="text-gray-700 hover:text-gray-900 transition-colors duration-200"
+            >
+              <HelpCircle className="h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Area - Adjust top padding to account for topbar */}
+      <div className="pl-64 pt-16">
+        <main className="p-8">
+          {children}
+        </main>
+      </div>
+
       {/* Sidebar */}
       <div className="fixed inset-y-0 left-0 z-50 w-64 transform bg-white shadow-lg transition-transform duration-200 ease-in-out">
         <div className="flex h-full flex-col">
@@ -70,15 +97,6 @@ const DashboardLayout = ({ children }) => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="pl-64">
-        <main className="min-h-screen bg-gray-100 py-8">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
-        </main>
       </div>
     </div>
   );

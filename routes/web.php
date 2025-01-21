@@ -13,6 +13,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BillingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -38,7 +39,7 @@ Route::get('/courses', function () {
 
 Route::get('/faq', function () {
     return Inertia::render('Faq');
-});
+})->name('faq');
 
 Route::get('/contact', function () {
     return Inertia::render('Contact');
@@ -93,6 +94,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/registrations', [DashboardController::class, 'registrations'])->name('dashboard.registrations');
+    Route::get('/billing/portal', [BillingController::class, 'portal'])->name('billing.portal');
 });
 
 // Registration and Stripe routes

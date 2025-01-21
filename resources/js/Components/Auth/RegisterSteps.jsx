@@ -217,12 +217,11 @@ const Step3 = ({ selectedPlan, setSelectedPlan, setData }) => {
             price: 79,
             stripe_price_id: 'price_1QjlvMKtoGj2ru2NpvnfCG1n',
             features: [
-                "Get a golf gift or a polo golf shirt when sign up",
                 "Secure your spot in tournaments",
-                "Participate in members-only events",
+                "Participate in members-only events, championships, and competitive play",
                 "Enjoy reduced rates on tournament fees",
-                "Connect with fellow golf enthusiasts",
-                "Enjoy member-only discounts"
+                "Connect with fellow golf enthusiasts, business professionals, and club members",
+                "Enjoy member-only discounts on ChauChauGolf merchandise, equipment, apparel"
             ],
             isPopular: false,
         },
@@ -232,53 +231,56 @@ const Step3 = ({ selectedPlan, setSelectedPlan, setData }) => {
             price: 550,
             stripe_price_id: 'price_1QjlvqKtoGj2ru2NGb7l22AA',
             features: [
-                "Get a golf gift or a polo golf shirt for each member",
                 "Secure spots in tournaments",
-                "Participate in members-only events",
+                "Participate in members-only events, championships, and competitive play",
                 "Enjoy reduced rates on tournament fees",
-                "Connect with fellow golf enthusiasts",
-                "Enjoy member-only discounts"
+                "Connect with fellow golf enthusiasts, business professionals, and club members",
+                "Enjoy member-only discounts on ChauChauGolf merchandise, equipment, apparel"
             ],
             isPopular: true,
         },
     ];
 
     return (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 px-4">
             {plans.map((plan, index) => (
                 <div
                     key={index}
-                    className={`flex flex-col rounded-lg p-8 cursor-pointer transition-all duration-300 ${
+                    className={`relative flex cursor-pointer flex-col rounded-xl bg-gray-50 p-8 transition-all duration-300 ${
                         selectedPlan?.stripe_price_id === plan.stripe_price_id
-                            ? 'bg-chaugreen/10 border-2 border-chaugreen'
-                            : 'bg-gray-50 border-2 border-transparent hover:border-chaugreen/50'
+                            ? 'ring-2 ring-chaugreen'
+                            : 'hover:ring-2 hover:ring-chaugreen/50'
                     }`}
                     onClick={() => {
                         setSelectedPlan(plan);
                         setData('plan_id', plan.stripe_price_id);
-                        console.log('Selected plan:', plan.name, 'with ID:', plan.stripe_price_id);
                     }}
                 >
                     {plan.isPopular && (
-                        <div className="mb-8">
-                            <span className="rounded-full bg-chaugreen px-3 py-1 text-sm font-semibold text-white">
+                        <div className="absolute right-6 top-6">
+                            <span className="rounded-full bg-chaugreen px-3 py-1 text-sm font-medium text-white">
                                 Most Popular
                             </span>
                         </div>
                     )}
-                    <div className="mb-6">
-                        <h3 className="mb-2 text-xl font-bold text-black">{plan.name}</h3>
-                        <p className="text-black/70">{plan.description}</p>
+                    
+                    <div className="mb-4">
+                        <h3 className="text-xl font-bold text-gray-900">{plan.name}</h3>
+                        <p className="mt-2 text-gray-600">{plan.description}</p>
                     </div>
-                    <div className="mb-6">
-                        <span className="text-5xl font-bold text-black">${plan.price}</span>
-                        <span className="text-black/70">/year</span>
+
+                    <div className="mb-8">
+                        <div className="flex items-baseline">
+                            <span className="text-4xl font-bold text-gray-900">${plan.price}</span>
+                            <span className="ml-1 text-gray-600">/year</span>
+                        </div>
                     </div>
-                    <div className="mb-8 space-y-4">
+
+                    <div className="flex-grow space-y-4">
                         {plan.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-3">
-                                <Check className="h-5 w-5 text-chaugreen" />
-                                <span className="text-black/70">{feature}</span>
+                            <div key={index} className="flex items-start gap-3">
+                                <Check className="mt-1 h-5 w-5 flex-shrink-0 text-chaugreen" />
+                                <span className="text-gray-600">{feature}</span>
                             </div>
                         ))}
                     </div>

@@ -26,8 +26,8 @@
       "_transition-DERcJ1Y2.js"
     ]
   },
-  "_GuestLayout-CLMNZJy5.js": {
-    "file": "assets/GuestLayout-CLMNZJy5.js",
+  "_GuestLayout-D3a77Cl5.js": {
+    "file": "assets/GuestLayout-D3a77Cl5.js",
     "name": "GuestLayout",
     "imports": [
       "_relume-CUjVMWgW.js",
@@ -162,8 +162,15 @@
       "_vendor-CzJBlmwO.js"
     ]
   },
-  "_index-B9SlFqVK.js": {
-    "file": "assets/index-B9SlFqVK.js",
+  "_index-CKfJ9zyE.js": {
+    "file": "assets/index-CKfJ9zyE.js",
+    "name": "index",
+    "imports": [
+      "_vendor-CzJBlmwO.js"
+    ]
+  },
+  "_index-hN8Px5aa.js": {
+    "file": "assets/index-hN8Px5aa.js",
     "name": "index",
     "imports": [
       "_relume-CUjVMWgW.js",
@@ -172,13 +179,6 @@
       "_calendar-z79XGEsy.js",
       "_trophy-BKXr4Ixd.js",
       "_clsx-B-dksMZM.js"
-    ]
-  },
-  "_index-CKfJ9zyE.js": {
-    "file": "assets/index-CKfJ9zyE.js",
-    "name": "index",
-    "imports": [
-      "_vendor-CzJBlmwO.js"
     ]
   },
   "_map-pin-D_0YQdIF.js": {
@@ -281,7 +281,7 @@
     ]
   },
   "resources/js/Pages/Auth/ConfirmPassword.jsx": {
-    "file": "assets/ConfirmPassword-cj37Ncgd.js",
+    "file": "assets/ConfirmPassword-Cq5alxJy.js",
     "name": "ConfirmPassword",
     "src": "resources/js/Pages/Auth/ConfirmPassword.jsx",
     "isDynamicEntry": true,
@@ -290,12 +290,12 @@
       "_TextInput-DkZCRtRm.js",
       "_InputLabel-eDAHkoua.js",
       "_PrimaryButton-C58-Yig-.js",
-      "_GuestLayout-CLMNZJy5.js",
+      "_GuestLayout-D3a77Cl5.js",
       "_vendor-CzJBlmwO.js"
     ]
   },
   "resources/js/Pages/Auth/ForgotPassword.jsx": {
-    "file": "assets/ForgotPassword-CRR4Vb_M.js",
+    "file": "assets/ForgotPassword-1KIi6zMq.js",
     "name": "ForgotPassword",
     "src": "resources/js/Pages/Auth/ForgotPassword.jsx",
     "isDynamicEntry": true,
@@ -303,12 +303,12 @@
       "_relume-CUjVMWgW.js",
       "_TextInput-DkZCRtRm.js",
       "_PrimaryButton-C58-Yig-.js",
-      "_GuestLayout-CLMNZJy5.js",
+      "_GuestLayout-D3a77Cl5.js",
       "_vendor-CzJBlmwO.js"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-BXzaEBgo.js",
+    "file": "assets/Login-BWKmkDKd.js",
     "name": "Login",
     "src": "resources/js/Pages/Auth/Login.jsx",
     "isDynamicEntry": true,
@@ -318,17 +318,17 @@
       "_TextInput-DkZCRtRm.js",
       "_InputLabel-eDAHkoua.js",
       "_PrimaryButton-C58-Yig-.js",
-      "_GuestLayout-CLMNZJy5.js"
+      "_GuestLayout-D3a77Cl5.js"
     ]
   },
   "resources/js/Pages/Auth/Register.jsx": {
-    "file": "assets/Register-ClJa4T8e.js",
+    "file": "assets/Register-IZ65XzSd.js",
     "name": "Register",
     "src": "resources/js/Pages/Auth/Register.jsx",
     "isDynamicEntry": true,
     "imports": [
       "_relume-CUjVMWgW.js",
-      "_GuestLayout-CLMNZJy5.js",
+      "_GuestLayout-D3a77Cl5.js",
       "_vendor-CzJBlmwO.js",
       "_TextInput-DkZCRtRm.js",
       "_InputLabel-eDAHkoua.js",
@@ -337,21 +337,21 @@
     ]
   },
   "resources/js/Pages/Auth/Register.old.jsx": {
-    "file": "assets/Register.old-nnXJuGBM.js",
+    "file": "assets/Register.old-lZ5AuMoS.js",
     "name": "Register.old",
     "src": "resources/js/Pages/Auth/Register.old.jsx",
     "isDynamicEntry": true,
     "imports": [
       "_relume-CUjVMWgW.js",
       "_vendor-CzJBlmwO.js",
-      "_GuestLayout-CLMNZJy5.js",
+      "_GuestLayout-D3a77Cl5.js",
       "_TextInput-DkZCRtRm.js",
       "_InputLabel-eDAHkoua.js",
       "_PrimaryButton-C58-Yig-.js"
     ]
   },
   "resources/js/Pages/Auth/ResetPassword.jsx": {
-    "file": "assets/ResetPassword-DridTtr7.js",
+    "file": "assets/ResetPassword-Dr14P3UG.js",
     "name": "ResetPassword",
     "src": "resources/js/Pages/Auth/ResetPassword.jsx",
     "isDynamicEntry": true,
@@ -360,24 +360,24 @@
       "_TextInput-DkZCRtRm.js",
       "_InputLabel-eDAHkoua.js",
       "_PrimaryButton-C58-Yig-.js",
-      "_GuestLayout-CLMNZJy5.js",
+      "_GuestLayout-D3a77Cl5.js",
       "_vendor-CzJBlmwO.js"
     ]
   },
   "resources/js/Pages/Auth/VerifyEmail.jsx": {
-    "file": "assets/VerifyEmail-D2hGBtVr.js",
+    "file": "assets/VerifyEmail-B5mqWIxm.js",
     "name": "VerifyEmail",
     "src": "resources/js/Pages/Auth/VerifyEmail.jsx",
     "isDynamicEntry": true,
     "imports": [
       "_relume-CUjVMWgW.js",
       "_PrimaryButton-C58-Yig-.js",
-      "_GuestLayout-CLMNZJy5.js",
+      "_GuestLayout-D3a77Cl5.js",
       "_vendor-CzJBlmwO.js"
     ]
   },
   "resources/js/Pages/Contact.jsx": {
-    "file": "assets/Contact-743NItkl.js",
+    "file": "assets/Contact-Ejc40OAF.js",
     "name": "Contact",
     "src": "resources/js/Pages/Contact.jsx",
     "isDynamicEntry": true,
@@ -415,29 +415,29 @@
     ]
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-CQnKwH1_.js",
+    "file": "assets/Dashboard-CqCL771e.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "_relume-CUjVMWgW.js",
       "_vendor-CzJBlmwO.js",
-      "_index-B9SlFqVK.js",
+      "_index-hN8Px5aa.js",
+      "_createLucideIcon-g5LQwfDy.js",
       "_calendar-z79XGEsy.js",
       "_trophy-BKXr4Ixd.js",
-      "_createLucideIcon-g5LQwfDy.js",
       "_clsx-B-dksMZM.js"
     ]
   },
   "resources/js/Pages/Dashboard/Registrations.jsx": {
-    "file": "assets/Registrations-B4ykNtGY.js",
+    "file": "assets/Registrations-1zzkftMY.js",
     "name": "Registrations",
     "src": "resources/js/Pages/Dashboard/Registrations.jsx",
     "isDynamicEntry": true,
     "imports": [
       "_relume-CUjVMWgW.js",
       "_vendor-CzJBlmwO.js",
-      "_index-B9SlFqVK.js",
+      "_index-hN8Px5aa.js",
       "_calendar-z79XGEsy.js",
       "_map-pin-D_0YQdIF.js",
       "_dollar-sign-D70NgPzL.js",
@@ -762,7 +762,7 @@
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-r-nVGfie.js",
+    "file": "assets/app-Dr3yWtCW.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
@@ -803,7 +803,7 @@
       "resources/js/Pages/Welcome.jsx"
     ],
     "css": [
-      "assets/app-BF2TDCE-.css"
+      "assets/app-Bmskjlbe.css"
     ]
   }
 }
