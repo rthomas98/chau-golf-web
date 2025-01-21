@@ -8,21 +8,26 @@ const PricingCard = ({ plan, isPopular, auth }) => {
   const price = plan.price;
   
   const handleSubscribe = async () => {
+    console.log('Subscribe button clicked');
     setIsLoading(true);
     try {
-      const response = await router.post(route('stripe.checkout'), {
+      console.log('Making request with price_id:', plan.stripe_price_id);
+      await router.post(route('stripe.checkout'), {
         price_id: plan.stripe_price_id,
+      }, {
+        onSuccess: (response) => {
+          console.log('Success response:', response);
+          if (response?.url) {
+            window.location.href = response.url;
+          }
+        },
+        onError: (errors) => {
+          console.error('Error response:', errors);
+        },
+        preserveScroll: true,
       });
-      
-      if (response.error) {
-        console.error('Error:', response.error);
-        return;
-      }
-      
-      // Redirect to Stripe Checkout
-      window.location.href = response.url;
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Caught error:', error);
     } finally {
       setIsLoading(false);
     }
@@ -151,7 +156,7 @@ export const Pricing3Defaults = {
       name: "Individual Membership",
       description: "Perfect for the solo golfer looking to improve their game",
       price: 79,
-      stripe_price_id: 'price_individual', // Replace with your Stripe Price ID
+      stripe_price_id: 'price_1QiGQaKtoGj2ru2NnWCK1gDy',
       features: [
         "Get a golf gift or a polo golf shirt when sign up",
         "Secure your spot in tournaments",
@@ -167,7 +172,7 @@ export const Pricing3Defaults = {
       name: "Business Membership",
       description: "For 8 employees",
       price: 550,
-      stripe_price_id: 'price_business', // Replace with your Stripe Price ID
+      stripe_price_id: 'price_1QiGR3KtoGj2ru2NN69RajYA',
       features: [
         "Get a golf gift or a polo golf shirt for each member when sign up",
         "Secure spots in tournaments",

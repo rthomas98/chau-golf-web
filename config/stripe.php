@@ -51,4 +51,21 @@ return [
     |
     */
     'environment' => env('STRIPE_ENV', 'test'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Stripe Products
+    |--------------------------------------------------------------------------
+    |
+    | These are the product IDs for the different membership types available
+    | in the application. These IDs correspond to products created in your
+    | Stripe dashboard.
+    |
+    */
+    'products' => [
+        'memberships' => [
+            'individual' => 'prod_RbTNfGvgw1sC82',
+            'business' => 'prod_RbTNNQneqd',
+        ],
+    ],
 ];

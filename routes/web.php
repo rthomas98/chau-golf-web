@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -94,7 +95,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/registrations', [DashboardController::class, 'registrations'])->name('dashboard.registrations');
 });
 
-// Stripe routes
+// Registration and Stripe routes
+Route::post('/register-with-plan', [RegisteredUserController::class, 'storeWithPlan'])
+    ->middleware(['guest'])
+    ->name('register.with.plan');
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/stripe/create-checkout-session', [StripeController::class, 'createCheckoutSession'])
         ->name('stripe.checkout');

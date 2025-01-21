@@ -14,14 +14,34 @@ class StripeController extends Controller
             $user = auth()->user();
             $priceId = $request->price_id;
             
-            return $user->newSubscription('default', $priceId)
+            \Log::info('Creating Stripe checkout session', [
+                'user_id' => $user->id,
+                'price_id' => $priceId
+            ]);
+            
+            $checkout = $user->newSubscription('default', $priceId)
                 ->allowPromotionCodes()
                 ->checkout([
                     'success_url' => route('membership.success'),
                     'cancel_url' => route('membership.cancel'),
+                    'mode' => 'subscription',
+                    'subscription_data' => [
+                        'metadata' => [
+                            'user_id' => $user->id,
+                        ],
+                    ],
                 ]);
+
+            \Log::info('Stripe checkout session created', [
+                'checkout_url' => $checkout->url
+            ]);
+
+            return redirect($checkout->url);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            \Log::error('Stripe checkout error', [
+                'error' => $e->getMessage()
+            ]);
+            return back()->with('error', $e->getMessage());
         }
     }
 
